@@ -31,7 +31,8 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .hbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 20px;max-width:1440px;margin:0 auto}
 .hleft{display:flex;align-items:center;gap:18px}
 .icon-btn{background:none;border:0;font-size:20px;cursor:pointer;color:inherit;flex-shrink:0}
-.logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;letter-spacing:-.02em;white-space:nowrap}
+.logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;letter-spacing:-.02em;white-space:nowrap}
+.logo span{color:#ff4d00}
 .logo sup{font-size:14px}
 .hright{display:flex;align-items:center;gap:18px;justify-content:flex-end;font-size:13px;font-weight:600}
 .lang-mini{display:flex;border:1px solid currentColor;border-radius:5px;overflow:hidden;flex-shrink:0}
@@ -88,7 +89,7 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .pcard .ph{aspect-ratio:3/3.6;overflow:hidden;position:relative;background:#ddd}
 .pcard .ph img{width:100%;height:100%;object-fit:cover;transition:.6s}
 .pcard:hover .ph img{transform:scale(1.05)}
-.badge{position:absolute;top:12px;left:12px;background:#111;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:999px;max-width:calc(100% - 24px)}
+.badge{position:absolute;top:12px;left:12px;background:#111;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:5px;max-width:calc(100% - 24px)}
 .badge.orange{background:var(--accent)}
 .badge.sand{background:var(--bg2);color:#111}
 .quick{position:absolute;bottom:12px;right:12px;width:44px;height:44px;border-radius:5px;background:#fff;border:0;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2)}
@@ -98,8 +99,14 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .pcard h3{font-size:19px;letter-spacing:-.02em;margin:6px 0;line-height:1.1}
 .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px}
 .price{font-weight:700;white-space:nowrap}
-.swatches{display:flex;gap:6px;flex-shrink:0}
-.swatches i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+.nextart{display:flex;align-items:center;gap:7px;margin-top:10px;font-size:11px;font-weight:700;padding:8px 10px;border-radius:5px;background:#e9f4ec;color:#1d7a3a;overflow:hidden}
+.nextart i{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0;animation:blinkDot 1.6s ease-in-out infinite}
+.nextart.warn{background:#fdf3e1;color:#a85e00}
+.nextart.full{background:#fdecea;color:#c0392b}
+.nextart b{white-space:nowrap}
+.nextart span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;opacity:.85}
+@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.nextart i{animation:none}}
 /* EDITORIAL 2-col like Analog */
 .edit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:40px 0}
 .edit-card{position:relative;border-radius:14px;overflow:hidden;overflow:clip;min-height:560px;display:flex;align-items:flex-end;color:#fff;min-width:0}
@@ -108,7 +115,7 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .edit-copy{position:relative;z-index:2;padding:30px;max-width:100%}
 .edit-copy>div:last-child{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
 .edit-copy h3{font-size:clamp(30px,3.5vw,48px);margin:10px 0}
-.hotspot{position:absolute;z-index:3;background:#fff;color:#111;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.25);white-space:nowrap;max-width:calc(100% - 44px);overflow:hidden;text-overflow:ellipsis}
+.hotspot{position:absolute;z-index:3;background:#fff;color:#111;border-radius:5px;padding:8px 14px;font-size:12px;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.25);white-space:nowrap;max-width:calc(100% - 44px);overflow:hidden;text-overflow:ellipsis}
 /* SURF FULL BLEED + COUNTDOWN */
 .surf-full{position:relative;border-radius:14px;overflow:hidden;overflow:clip;color:#fff;min-height:520px;display:grid;place-items:center;text-align:center;margin:20px 0}
 .surf-full img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -139,10 +146,58 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 /* LOOKBOOK */
 .look{display:flex;gap:12px;overflow-x:auto;padding:10px 0 30px;scroll-snap-type:x mandatory;max-width:100%}
 .look img{width:300px;max-width:70vw;height:380px;object-fit:cover;border-radius:12px;scroll-snap-align:start;flex-shrink:0}
+/* STRIP GALLERY */
+.strip{margin:6px 0 0;overflow:hidden;overflow:clip;white-space:nowrap;padding:18px 0 24px;max-width:100%}
+.strip-track{display:inline-flex;gap:16px;width:max-content;animation:marquee 28s linear infinite}
+.strip:hover .strip-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.strip img{width:260px;height:170px;object-fit:cover;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.15);flex-shrink:0}
+.strip img:nth-child(even){transform:rotate(-2deg)}
+.strip img:nth-child(odd){transform:rotate(2deg)}
 /* REVIEWS */
 .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:10px auto 40px}
 .rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
 .rev p{font-size:14px;line-height:1.6;margin:10px 0}
+.social-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:6px}
+.social-head h2{font-size:clamp(32px,4.5vw,54px);margin:8px 0}
+.score{display:flex;align-items:baseline;gap:10px;margin-top:8px;flex-wrap:wrap}
+.score strong{font-family:'Archivo';font-size:44px}
+.score .waves-emoji{font-size:26px;letter-spacing:2px}
+.score small{color:var(--muted)}
+.plats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.plats span{border:1px solid var(--line);background:#fff;border-radius:5px;padding:7px 12px;font-size:12px;font-weight:600}
+.social-cta{display:flex;gap:10px;flex-wrap:wrap}
+.post-head{display:flex;gap:12px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 15px 'Archivo';flex-shrink:0}
+.post-head>div{min-width:0;flex:1}
+.post-head strong{font-size:14px}
+.post-head small{color:var(--muted);font-size:12px;display:block}
+.verified{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1d7a3a;background:#e9f4ec;padding:6px 10px;border-radius:5px;white-space:nowrap}
+.waves-emoji{font-size:19px;letter-spacing:2px}
+.post .waves-emoji{display:block;margin:10px 0 2px}
+.post-tags{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}
+.post-tags span{font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--line);padding:5px 10px;border-radius:5px}
+.post-foot{display:flex;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.like{border:1px solid var(--line);background:transparent;border-radius:5px;padding:7px 12px;font:700 12px 'Inter';cursor:pointer;color:var(--muted)}
+.like.on{background:#fdecea;border-color:#e0393e;color:#e0392b}
+.shareb{border:1px solid var(--line);background:transparent;border-radius:5px;padding:7px 12px;font:700 12px 'Inter';cursor:pointer;color:var(--ink)}
+.via{margin-left:auto;font-size:11px;color:var(--muted)}
+.ig-head{display:flex;align-items:center;gap:14px;margin:26px 0 14px}
+.ig-ava{width:52px;height:52px;border-radius:50%;background:linear-gradient(45deg,#f4a261,#c3623f,#1c6e8c);display:grid;place-items:center;color:#fff;font:800 18px 'Archivo';flex-shrink:0;padding:2px}
+.ig-ava b{background:var(--bg);color:var(--ink);width:100%;height:100%;border-radius:50%;display:grid;place-items:center}
+.ig-head strong{font-size:15px;display:block}
+.ig-head small{color:var(--muted);font-size:12px}
+.ig-follow{margin-left:auto;flex-shrink:0}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.ig-item{position:relative;aspect-ratio:1/1;border-radius:5px;overflow:hidden;display:block}
+.ig-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.ig-item:hover img{transform:scale(1.07)}
+.ig-item span{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,15,18,.45);color:#fff;font-weight:700;font-size:14px;opacity:0;transition:.25s}
+.ig-item:hover span{opacity:1}
+@media(max-width:1000px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
+.met4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:22px auto 44px}
+@media(max-width:1000px){.met4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.met4{grid-template-columns:1fr}}
 /* FAQ */
 .faq{max-width:760px;margin:0 auto 60px}
 .faq details{border-bottom:1px solid var(--line);padding:18px 0;cursor:pointer}
@@ -197,12 +252,28 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 .qv-card{background:var(--bg);border-radius:16px;max-width:860px;width:100%;display:grid;grid-template-columns:1fr 1fr;overflow:auto;max-height:90vh;max-height:90dvh}
 .qv-card img{width:100%;height:100%;object-fit:cover;min-height:320px}
 .qv-info{padding:30px;overflow:auto;min-width:0}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:150;width:56px;height:56px;border-radius:5px;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.45);transition:transform .25s;animation:waIn .6s ease .8s backwards}
+.wa-float:hover{transform:translateY(-3px) scale(1.04)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+.wa-float::before{content:"";position:absolute;inset:-4px;border-radius:9px;border:2px solid rgba(37,211,102,.5);animation:waPing 2.4s ease-out infinite;pointer-events:none}
+@keyframes waPing{0%{transform:scale(.85);opacity:1}70%,100%{transform:scale(1.15);opacity:0}}
+@keyframes waIn{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.wa-float,.wa-float::before{animation:none}}
+.field input.invalid,.field select.invalid,.field textarea.invalid{border-color:#e0393e !important;box-shadow:0 0 0 3px rgba(224,57,62,.18)}
+.omodal{position:fixed;inset:0;z-index:240;display:grid;place-items:center;padding:18px;background:rgba(10,15,18,.55);opacity:0;pointer-events:none;transition:.3s}
+.omodal.show{opacity:1;pointer-events:auto}
+.omodal-card{background:var(--bg);border-radius:14px;max-width:480px;width:100%;padding:32px 28px;transform:translateY(14px);transition:.3s;max-height:90vh;max-height:90dvh;overflow:auto;color:var(--ink)}
+.omodal.show .omodal-card{transform:none}
+.ocheck{width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;font-size:28px;display:grid;place-items:center;margin:0 auto 14px}
+.ostep{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:14px}
+.onum{min-width:26px;width:26px;height:26px;border-radius:5px;background:#111;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.omrecap{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;margin-top:10px}
 .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,80px);background:#111;color:#fff;padding:13px 24px;border-radius:999px;font-size:13px;font-weight:600;z-index:300;transition:.35s;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{transform:translate(-50%,0)}
 .reveal{opacity:0;transform:translateY(22px);transition:.7s}
-.reveal.visible{opacity:1;transform:none}
+.reveal.visible{opacity:1;transform:none;padding:60px 20px 0}
 @media(max-width:1000px){.grid4{grid-template-columns:1fr 1fr}.edit,.split2,.qv-card,.foot-grid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.hero-top-img{height:30vh}.checkout{position:static}.hide-m{display:none}.split2{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:560px){.grid4{grid-template-columns:1fr 1fr;gap:10px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:60px;padding:0 12px;gap:8px}.hleft{gap:0}.hleft .icon-btn:last-child{display:none}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:20px}.bag-btn{padding:7px 12px;font-size:12px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 16px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 16px}.checkout{padding:20px 16px}.addons{padding:16px}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr 1fr;gap:10px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:60px;padding:0 12px;gap:8px}.hleft{gap:0}.hleft .icon-btn:last-child{display:none}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:23px}.bag-btn{padding:7px 12px;font-size:12px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 16px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 16px}.checkout{padding:20px 16px}.addons{padding:16px}}
 @media(max-width:380px){.grid4{grid-template-columns:1fr}.hero h1{font-size:40px}.addon-row{flex-wrap:wrap}.addon-row button{margin-left:0;width:100%}}
 </style>
 </head>
@@ -213,11 +284,11 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 <header id="header">
   <div class="hbar">
     <div class="hleft"><button class="icon-btn" onclick="toggleMenu(true)">☰</button><button class="icon-btn">⌕</button></div>
-    <a class="logo" href="#">HUARA°</a>
+    <a class="logo" href="#">HUARA<span>°</span></a>
     <div class="hright">
       <div class="lang-mini"><button id="btnEN" class="active" onclick="setLang('en')"><span>EN</span></button><button id="btnES" onclick="setLang('es')"><span>ES</span></button></div>
       <span style="opacity:.7" class="hide-m">Account</span>
-      <button class="bag-btn" onclick="toggleCart(true)"><span data-en="Bag" data-es="Bolsa">Bag</span> (<span id="cartCount">0</span>)</button>
+      <button class="bag-btn" onclick="toggleCart(true)"><span data-en="Order" data-es="Pedido">Order</span> (<span id="cartCount">0</span>)</button>
     </div>
   </div>
 </header>
@@ -228,13 +299,13 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
   <div style="margin-top:16px">
     <a class="big" href="#shop" onclick="toggleMenu(false)">Shop programs</a>
     <a class="big" href="#modalidades" onclick="toggleMenu(false)">Presencial / Online</a>
-    <a class="big" href="#surf" onclick="toggleMenu(false)">Spanish + Surf°</a>
+    <a class="big" href="#surf" onclick="toggleMenu(false)">Spanish + Surf</a>
     <a class="big" href="#addons" onclick="toggleMenu(false)">Experiences</a>
     <a class="big" href="#faq" onclick="toggleMenu(false)">FAQ</a>
   </div>
   <div class="m-lang"><button id="btnENm" class="active" onclick="setLang('en')">EN</button><button id="btnESm" onclick="setLang('es')">ES</button></div>
   <p style="margin-top:20px;font-size:13px;color:var(--muted)">Casa de Katta · Pichilemu, Chile<br>hola@huara.cl · @huara.spanish</p>
-  <button class="btn-pill btn-dark" style="margin-top:16px;width:100%;justify-content:center" onclick="toggleMenu(false);toggleCart(true)">Bag ( <span id="cartCount2">0</span> ) →</button>
+  <button class="btn-pill btn-dark" style="margin-top:16px;width:100%;justify-content:center" onclick="toggleMenu(false);toggleCart(true)">Order ( <span id="cartCount2">0</span> ) →</button>
 </nav>
 
 <!-- HERO ANALOG -->
@@ -256,13 +327,13 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 <!-- SHOP PROGRAMS -->
 <div class="container shop reveal" id="shop">
   <div class="shop-head">
-    <div><p style="font-size:12px;font-weight:600;letter-spacing:.14em">● <span data-en="SHOP / 06 PROGRAMS" data-es="TIENDA / 06 PROGRAMAS">SHOP / 06 PROGRAMS</span></p>
+    <div><p style="font-size:12px;font-weight:600;letter-spacing:.14em">● <span data-en="SHOP / 07 PROGRAMS" data-es="TIENDA / 07 PROGRAMAS">SHOP / 07 PROGRAMS</span></p>
     <h2 data-en="Shop programs" data-es="Compra programas">Shop programs</h2></div>
     <div class="filters">
       <button class="active" onclick="setFilter('all',this)" data-en="All" data-es="Todos">All</button>
       <button onclick="setFilter('presencial',this)">Presencial</button>
       <button onclick="setFilter('online',this)">Online</button>
-      <button onclick="setFilter('surf',this)">Surf°</button>
+      <button onclick="setFilter('surf',this)">Surf</button>
     </div>
   </div>
   <div class="grid4" id="productGrid"></div>
@@ -273,13 +344,26 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
   <div class="edit">
     <div class="edit-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80&auto=format&fit=crop">
       <span class="hotspot" style="top:22px;left:22px">● max 4</span>
-      <span class="hotspot" style="top:110px;right:22px">⌂ Casa de Katta</span>
-      <div class="edit-copy"><p style="font-size:12px;letter-spacing:.14em">01 — IN-PERSON</p><h3 data-en="Immersion in Pichilemu" data-es="Inmersión en Pichilemu">Immersion in Pichilemu</h3><p style="opacity:.85;font-size:14px">15h/week · Mon–Fri · Terrace + garden</p><div><button class="btn-pill btn-white" onclick="addToCart('pres-intensivo')">Add — $280</button><button class="btn-pill" style="border:1px solid #fff;color:#fff;background:transparent" onclick="quickView('pres-intensivo')">Quick view</button></div></div>
+      <span class="hotspot" style="top:22px;right:22px">⌂ Casa de Katta</span>
+      <div class="edit-copy"><p style="font-size:12px;letter-spacing:.14em">01 — IN-PERSON</p><h3 data-en="Immersion in Pichilemu" data-es="Inmersión en Pichilemu">Immersion in Pichilemu</h3><p style="opacity:.85;font-size:14px">15h/week · Mon–Fri 10:00–13:00 · Group & 1-on-1</p><div><button class="btn-pill btn-white" onclick="addToCart('pres-intensivo')">Add — $280</button><button class="btn-pill" style="border:1px solid #fff;color:#fff;background:transparent" onclick="quickView('pres-intensivo')">Quick view</button></div></div>
     </div>
     <div class="edit-card"><img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=900&q=80&auto=format&fit=crop">
       <span class="hotspot" style="top:22px;left:22px">● Google Meet</span>
-      <div class="edit-copy"><p style="font-size:12px;letter-spacing:.14em">02 — ONLINE</p><h3 data-en="Learn from anywhere" data-es="Aprende desde donde sea">Learn from anywhere</h3><p style="opacity:.85;font-size:14px">1-on-1 · $25/h · Pack 10h $220</p><div><button class="btn-pill btn-white" onclick="addToCart('online-pack10')">Add — $220</button><button class="btn-pill" style="border:1px solid #fff;color:#fff;background:transparent" onclick="quickView('online-pack10')">Quick view</button></div></div>
+      <div class="edit-copy"><p style="font-size:12px;letter-spacing:.14em">02 — ONLINE</p><h3 data-en="Learn from anywhere" data-es="Aprende desde donde sea">Learn from anywhere</h3><p style="opacity:.85;font-size:14px">12 · 24 · 36 classes · Group & 1-on-1 · PDF by email</p><div><button class="btn-pill btn-white" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">See programs</button><button class="btn-pill" style="border:1px solid #fff;color:#fff;background:transparent" onclick="quickView('online-bas12')">Quick view</button></div></div>
     </div>
+  </div>
+</div>
+
+<!-- METHOD -->
+<div class="container reveal" id="metodo">
+  <p style="font-size:12px;font-weight:600;letter-spacing:.14em">● <span data-en="OUR METHOD" data-es="NUESTRO MÉTODO">OUR METHOD</span></p>
+  <h2 style="font-size:clamp(34px,4.5vw,58px);margin:8px 0" data-en="Spanish you use, not memorize" data-es="Español que se usa, no que se memoriza">Spanish you use, not memorize</h2>
+  <p style="font-size:14px;color:var(--muted);max-width:640px" data-en="Every class mixes language with real Chilean life: local words, food, shopping and street conversation." data-es="Cada clase mezcla idioma con vida chilena real: palabras locales, comida, compras y conversación cotidiana.">Every class mixes language with real Chilean life: local words, food, shopping and street conversation.</p>
+  <div class="met4">
+    <div class="rev">🗣️<p><strong data-en="Chilean slang you'll use" data-es="Chilenismos que sí usarás">Chilean slang you'll use</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Cachai, bacán, fome… local words and expressions from day one." data-es="Cachai, bacán, fome… palabras y expresiones locales desde el día uno.">Cachai, bacán, fome… local words and expressions from day one.</p></div>
+    <div class="rev">🍲<p><strong data-en="Recipes & ingredients" data-es="Recetas e ingredientes">Recipes & ingredients</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once." data-es="Vocabulario de cocina chilena aprendido cocinando: empanadas, pebre, once.">Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once.</p></div>
+    <div class="rev">🛒<p><strong data-en="Numbers at the market" data-es="Números en la feria">Numbers at the market</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Prices, change and bargaining while shopping for real." data-es="Precios, vuelto y regateo practicando compras reales.">Prices, change and bargaining while shopping for real.</p></div>
+    <div class="rev">🧭<p><strong data-en="Real-life conversation" data-es="Conversación real">Real-life conversation</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Hotels, tours, restaurants and daily life: speak from day one." data-es="Hotel, tours, restaurantes y vida diaria: habla desde el día uno.">Hotels, tours, restaurants and daily life: speak from day one.</p></div>
   </div>
 </div>
 
@@ -303,35 +387,88 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
     <h2 style="font-size:36px;margin:8px 0 6px" data-en="Complete the look" data-es="Completa la experiencia">Complete the look</h2>
     <p style="font-size:14px;color:var(--muted)" data-en="Frequently added with Intensive + Surf." data-es="Frecuentemente agregado con Intensivo + Surf.">Frequently added with Intensive + Surf.</p>
     <div id="addonList" style="margin-top:10px"></div>
-    <h3 style="font-size:22px;margin:22px 0 10px">Lookbook — Casa de Katta</h3>
-    <div class="look">
-      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80&auto=format&fit=crop">
-      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80&auto=format&fit=crop">
-      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80&auto=format&fit=crop">
-      <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80&auto=format&fit=crop">
-    </div>
   </div>
   <div class="checkout" id="booking">
-    <h3>🧾 <span data-en="Your bag" data-es="Tu bolsa">Your bag</span></h3>
+    <h3>🧾 <span data-en="Your order" data-es="Tu pedido">Your order</span></h3>
     <div id="summaryLines" style="margin:12px 0"></div>
     <div style="display:flex;justify-content:space-between;gap:10px;font-family:'Archivo';font-weight:800;font-size:22px;margin:10px 0"><span>Total</span><span id="sumTotal">$0</span></div>
     <div class="field"><label data-en="Full name" data-es="Nombre completo">Full name</label><input id="fName" placeholder="Lena Müller"></div>
     <div class="field"><label>Email</label><input id="fEmail" placeholder="lena@email.com"></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div class="field"><label data-en="Modality" data-es="Modalidad">Modality</label><select id="fMod" onchange="adaptForm()"><option value="presencial">Presencial</option><option value="online">Online · Meet</option></select></div>
+      <div class="field"><label data-en="Modality" data-es="Modalidad">Modality</label><select id="fMod" onchange="adaptForm()"><option value="pres-grupal" data-en="In-person · Group" data-es="Presencial · Grupal">In-person · Group</option><option value="pres-priv" data-en="In-person · 1-on-1" data-es="Presencial · Personalizada">In-person · 1-on-1</option><option value="online-grupal" data-en="Online · Group" data-es="Online · Grupal">Online · Group</option><option value="online-priv" data-en="Online · 1-on-1" data-es="Online · Personalizada">Online · 1-on-1</option></select></div>
       <div class="field"><label data-en="Start" data-es="Inicio">Start</label><input type="date" id="fDate"></div>
     </div>
-    <div id="presFields"><div class="field"><label data-en="Weeks / Accommodation" data-es="Semanas / Alojamiento">Weeks / Accommodation</label><select><option>2 weeks + acc. help</option><option>1 week</option><option>4 weeks + acc. help</option><option>No acc. needed</option></select></div></div>
-    <div id="onlineFields" style="display:none"><div class="field"><label>Timezone</label><select><option>Europe GMT+1</option><option>US EST GMT-5</option><option>Australia GMT+11</option></select></div></div>
+    <div class="field"><label data-en="Level" data-es="Nivel">Level</label><select id="fLevel"><option data-en="Basic A1–A2" data-es="Básico A1–A2">Basic A1–A2</option><option data-en="Intermediate B1–B2" data-es="Intermedio B1–B2">Intermediate B1–B2</option><option data-en="Advanced C1–C2" data-es="Avanzado C1–C2">Advanced C1–C2</option></select></div>
+    <div id="presFields"><p style="font-size:12px;opacity:.65;margin:12px 0 0">🕙 <span data-en="Classes Mon–Fri 10:00–13:00" data-es="Clases lun–vie 10:00–13:00">Classes Mon–Fri 10:00–13:00</span></p><div class="field"><label data-en="Weeks / Accommodation" data-es="Semanas / Alojamiento">Weeks / Accommodation</label><select id="fAcc"><option>2 weeks + acc. help</option><option>1 week</option><option>4 weeks + acc. help</option><option>No acc. needed</option></select></div></div>
+    <div id="onlineFields" style="display:none"><div class="field"><label data-en="Online program" data-es="Programa online">Online program</label><select id="fProg"><option data-en="Basic — 12 classes" data-es="Básico — 12 clases">Basic — 12 classes</option><option data-en="Intermediate — 24 classes" data-es="Intermedio — 24 clases">Intermediate — 24 classes</option><option data-en="Advanced — 36 classes" data-es="Avanzado — 36 clases">Advanced — 36 classes</option></select></div><p style="font-size:12px;opacity:.65;margin:0 0 4px">📄 <span data-en="PDF guide (5 pages/class) by email + Google Meet" data-es="Guía PDF (5 págs/clase) por email + Google Meet">PDF guide (5 pages/class) by email + Google Meet</span></p><div class="field"><label>Timezone</label><select id="fTZ"><option>Europe GMT+1</option><option>US EST GMT-5</option><option>Australia GMT+11</option></select></div></div>
+    <div class="field"><label data-en="Notes (goals, surf level, diet...)" data-es="Notas (objetivos, surf, dieta...)">Notes (goals, surf level, diet...)</label><textarea id="fNotes" rows="2" placeholder="surf beginner · vegetarian"></textarea></div>
     <button class="btn-pill" style="background:var(--accent);color:#fff;width:100%;justify-content:center;margin-top:8px" onclick="checkout()">Checkout →</button>
     <p style="font-size:11px;opacity:.6;margin-top:10px" data-en="No payment now. Confirm within 24h by email/WhatsApp." data-es="Sin pago ahora. Confirmamos en 24h por email/WhatsApp.">No payment now. Confirm within 24h by email/WhatsApp.</p>
   </div>
 </div>
 
-<div class="container reviews reveal" id="casa">
-  <div class="rev">★★★★★<p>"I came for 2 weeks and stayed 2 months. Classes + surf + Friday dinners feel like family."</p><strong>Lena M.</strong> <small style="color:var(--muted)">— Germany · B1→B2</small></div>
-  <div class="rev">★★★★★<p>"Analog vibe, real Chile. Learned more speaking on the terrace than in 2 years of app."</p><strong>Jake T.</strong> <small style="color:var(--muted)">— USA · A2→B1</small></div>
-  <div class="rev">★★★★★<p>"Online pack kept my level sharp from Berlin. Then I flew for the surf pack. Worth it."</p><strong>Sofia R.</strong> <small style="color:var(--muted)">— Australia · B2→C1</small></div>
+<div class="container reveal" id="lookbook" style="margin-bottom:40px">
+  <p style="font-size:12px;font-weight:700;letter-spacing:.14em">● LOOKBOOK</p>
+  <h2 style="font-size:clamp(30px,4vw,44px);margin:8px 0 16px">Casa de Katta</h2>
+  <div class="strip"><div class="strip-track" id="stripTrack">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop" alt="Beach">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" alt="Students">
+    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80&auto=format&fit=crop" alt="Coast">
+    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80&auto=format&fit=crop" alt="Surf">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80&auto=format&fit=crop" alt="Terrace">
+    <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80&auto=format&fit=crop" alt="Waves">
+  </div></div>
+</div>
+
+<div class="container reveal" id="casa">
+  <div class="social-head">
+    <div>
+      <p style="font-size:12px;font-weight:600;letter-spacing:.14em">● <span data-en="COMMUNITY" data-es="COMUNIDAD">COMMUNITY</span></p>
+      <h2 data-en="Loved by students worldwide" data-es="Amada por estudiantes de todo el mundo">Loved by students worldwide</h2>
+      <div class="score"><strong>4.9</strong><span class="waves-emoji">🌊🌊🌊🌊🌊</span><small data-en="127 verified reviews" data-es="127 reseñas verificadas">127 verified reviews</small></div>
+      <div class="plats"><span>G 5.0 · Google</span><a href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">◎ @huaraspanishschool</a></div>
+    </div>
+    <div class="social-cta">
+      <a class="btn-pill btn-dark" href="#" onclick="return false"><span data-en="★ Review us on Google" data-es="★ Opina en Google">★ Review us on Google</span></a>
+      <button class="btn-pill" style="background:#25d366;color:#fff" onclick="shareSite()"><span data-en="Share ↗" data-es="Compartir ↗">Share ↗</span></button>
+    </div>
+  </div>
+  <div class="reviews">
+    <article class="rev post" data-post="r1">
+      <div class="post-head"><span class="avatar" style="background:linear-gradient(135deg,#1c6e8c,#0e4457)">LM</span><div><strong>Lena M.</strong><small data-en="Germany · 2 weeks ago" data-es="Alemania · hace 2 sem">Germany · 2 weeks ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"I came for 2 weeks and stayed 2 months. Classes + surf + Friday dinners feel like family."</p>
+      <div class="post-tags"><span>B1→B2</span><span>8 weeks</span><span>Surf</span></div>
+      <div class="post-foot"><button class="like" data-like="r1">♥ <b>24</b></button><button class="shareb" onclick="shareReview('r1')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Google</span></div>
+    </article>
+    <article class="rev post" data-post="r2">
+      <div class="post-head"><span class="avatar" style="background:linear-gradient(135deg,#c3623f,#f4a261)">JT</span><div><strong>Jake T.</strong><small data-en="USA · 1 month ago" data-es="EE.UU. · hace 1 mes">USA · 1 month ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"Analog vibe, real Chile. Learned more speaking on the terrace than in 2 years of app."</p>
+      <div class="post-tags"><span>A2→B1</span><span>4 weeks</span><span>Terrace</span></div>
+      <div class="post-foot"><button class="like" data-like="r2">♥ <b>18</b></button><button class="shareb" onclick="shareReview('r2')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Instagram</span></div>
+    </article>
+    <article class="rev post" data-post="r3">
+      <div class="post-head"><span class="avatar" style="background:linear-gradient(135deg,#35594a,#0e4457)">SR</span><div><strong>Sofia R.</strong><small data-en="Australia · 2 months ago" data-es="Australia · hace 2 meses">Australia · 2 months ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"Online pack kept my level sharp from Berlin. Then I flew for the surf pack. Worth it."</p>
+      <div class="post-tags"><span>B2→C1</span><span>Online + Surf</span></div>
+      <div class="post-foot"><button class="like" data-like="r3">♥ <b>31</b></button><button class="shareb" onclick="shareReview('r3')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Google</span></div>
+    </article>
+  </div>
+  <div class="ig-head">
+    <span class="ig-ava"><b>H</b></span>
+    <div><strong>huaraspanishschool</strong><small data-en="Pichilemu, Chile · Language school" data-es="Pichilemu, Chile · Escuela de idiomas">Pichilemu, Chile · Language school</small></div>
+    <a class="btn-pill btn-dark ig-follow" style="padding:11px 22px" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><span data-en="Follow" data-es="Seguir">Follow</span></a>
+  </div>
+  <div class="ig-grid">
+    <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=80&auto=format&fit=crop" alt="Surf"><span>♥ 214</span></a>
+    <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop" alt="Beach"><span>♥ 186</span></a>
+    <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" alt="Students"><span>♥ 158</span></a>
+    <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80&auto=format&fit=crop" alt="Surf"><span>♥ 243</span></a>
+    <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80&auto=format&fit=crop" alt="Empanadas"><span>♥ 197</span></a>
+    <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80&auto=format&fit=crop" alt="Sunset"><span>♥ 229</span></a>
+  </div>
 </div>
 
 <div class="faq container reveal" id="faq">
@@ -339,13 +476,16 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
   <details open><summary>How many students per group? <span></span></summary><p style="font-size:14px;color:var(--muted);margin-top:8px">Max 4 in-person. Online 1-on-1 or mini-groups of 3.</p></details>
   <details><summary>Do I need surf experience?</summary><p style="font-size:14px;color:var(--muted);margin-top:8px">No. Punta de Lobos has beginner breaks + certified local instructors. Board & wetsuit included.</p></details>
   <details><summary>Where are classes?</summary><p style="font-size:14px;color:var(--muted);margin-top:8px">Casa de Katta: terrace, kitchen & garden, 10 min walk to the beach. Fast WiFi for nomads.</p></details>
-  <details><summary>How does booking work?</summary><p style="font-size:14px;color:var(--muted);margin-top:8px">Add to bag → checkout → we confirm within 24h. No prepayment.</p></details>
+  <details><summary>How does booking work?</summary><p style="font-size:14px;color:var(--muted);margin-top:8px">Add to order → send your booking via WhatsApp → we confirm availability within 24h → pay securely with a Flow or MercadoPago link. No prepayment on this site.</p></details>
+  <details><summary>What study material do I get?</summary><p style="font-size:14px;color:var(--muted);margin-top:8px">PDF guide (about 5 pages per class) sent by email, plus in-class practice with real Chilean situations.</p></details>
 </div>
+
+<div class="big-marquee"><div><span>SURF °</span><span class="o">ESPAÑOL °</span><span>PUNTA DE LOBOS °</span><span class="o">EMPANADAS °</span><span>SALSA °</span><span class="o">PICHILEMU °</span><span>SURF °</span><span class="o">ESPAÑOL °</span><span>PUNTA DE LOBOS °</span><span class="o">EMPANADAS °</span><span>SALSA °</span><span class="o">PICHILEMU °</span></div></div>
 
 <footer>
   <div class="container foot-grid">
     <div><h4 style="font-family:'Archivo'">HUARA°</h4><p style="font-size:13px;opacity:.7">Affordable immersion: language + surf + nature + Chilean food.</p></div>
-    <div><h4>Shop</h4><a href="#shop" style="display:block;font-size:13px;opacity:.7;padding:3px 0">All programs</a><a href="#surf" style="display:block;font-size:13px;opacity:.7">Spanish + Surf°</a><a href="#addons" style="display:block;font-size:13px;opacity:.7">Experiences</a></div>
+    <div><h4>Shop</h4><a href="#shop" style="display:block;font-size:13px;opacity:.7;padding:3px 0">All programs</a><a href="#surf" style="display:block;font-size:13px;opacity:.7">Spanish + Surf</a><a href="#addons" style="display:block;font-size:13px;opacity:.7">Experiences</a></div>
     <div><h4>Help</h4><a href="#faq" style="display:block;font-size:13px;opacity:.7">FAQ</a><a href="#" style="display:block;font-size:13px;opacity:.7">Contact</a><a href="#" style="display:block;font-size:13px;opacity:.7">@huara.spanish</a></div>
     <div><h4>Newsletter — 10% off online</h4><div class="news"><input placeholder="email"><button>→</button></div></div>
   </div>
@@ -355,7 +495,7 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 
 <!-- CART DRAWER -->
 <aside class="cart-drawer" id="cartDrawer">
-  <div class="cd-head"><span><span data-en="Your Bag" data-es="Tu Bolsa">Your Bag</span> (<span id="drawerN">0</span>)</span><button class="icon-btn" onclick="toggleCart(false)">✕</button></div>
+  <div class="cd-head"><span><span data-en="Your Order" data-es="Tu Pedido">Your Order</span> (<span id="drawerN">0</span>)</span><button class="icon-btn" onclick="toggleCart(false)">✕</button></div>
   <div class="ship"><span id="shipMsg">Add $150 for a free empanada night 🥟</span><div class="ship-bar"><i id="shipBar" style="width:0%"></i></div></div>
   <div class="cd-body" id="cartItems"></div>
   <div style="padding:0 20px"><p style="font-size:12px;font-weight:700;letter-spacing:.1em">● FREQUENTLY ADDED</p><div style="display:flex;gap:8px;margin:10px 0;flex-wrap:wrap"><button onclick="addToCart('dinner')" style="flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:5px;padding:10px;cursor:pointer;font:600 12px Inter">+ Friday Dinner $25</button><button onclick="addToCart('surf-extra')" style="flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:5px;padding:10px;cursor:pointer;font:600 12px Inter">+ Surf $35</button></div></div>
@@ -363,35 +503,48 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 </aside>
 
 <!-- QUICK VIEW -->
-<div class="qv" id="qv"><div class="qv-card"><img id="qvImg" src=""><div class="qv-info"><button class="icon-btn" onclick="closeQV()">✕</button><p id="qvTag" style="font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--accent)"></p><h2 id="qvTitle" style="font-size:clamp(26px,5vw,36px);margin:8px 0"></h2><p id="qvDesc" style="font-size:14px;color:var(--muted)"></p><p id="qvPrice" style="font-family:Archivo;font-weight:800;font-size:24px;margin:14px 0"></p><button class="btn-pill btn-dark" id="qvAdd" style="width:100%;justify-content:center">Add to Bag →</button></div></div></div>
+<div class="qv" id="qv"><div class="qv-card"><img id="qvImg" src=""><div class="qv-info"><button class="icon-btn" onclick="closeQV()">✕</button><p id="qvTag" style="font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--accent)"></p><h2 id="qvTitle" style="font-size:clamp(26px,5vw,36px);margin:8px 0"></h2><p id="qvDesc" style="font-size:14px;color:var(--muted)"></p><p id="qvPrice" style="font-family:Archivo;font-weight:800;font-size:24px;margin:14px 0"></p><button class="btn-pill btn-dark" id="qvAdd" style="width:100%;justify-content:center">Add to Order →</button></div></div></div>
 
+<a class="wa-float" id="waFloat" href="https://wa.me/56937479835?text=Hi%20Huara!%20I%20want%20info%20about%20Spanish%20programs%20in%20Pichilemu." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<div class="omodal" id="orderModal"><div class="omodal-card">
+  <div class="ocheck">✓</div>
+  <h2 id="omTitle" style="text-align:center;font-size:30px;margin-bottom:6px"></h2>
+  <div id="omSteps"></div>
+  <div class="omrecap" id="omRecap"></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+    <button class="btn-pill" id="omWA" style="background:#25d366;color:#fff;flex:1;justify-content:center;min-width:170px">WhatsApp →</button>
+    <button class="btn-pill btn-dark" id="omClose" onclick="closeOrderModal()" style="flex:1;justify-content:center;min-width:120px">OK</button>
+  </div>
+  <div style="text-align:center;margin-top:10px"><button id="omEmpty" onclick="emptyBag()" style="background:none;border:0;color:var(--muted);font:600 12px Inter;cursor:pointer;text-decoration:underline">Empty order</button></div>
+</div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 let LANG='en', FILTER='all', cart={};
 const PRODUCTS={
- 'pres-intensivo':{cat:'presencial',badge:{en:'Bestseller',es:'Más vendido'},bc:'orange',tag:'A1–C1 · Presencial',title:{en:'Intensive Immersion 15h/week',es:'Inmersión Intensiva 15h/sem'},desc:{en:'Max 4 · Terrace + garden · Mon–Fri. Speak from day 1.',es:'Máx 4 · Terraza + jardín · Lun–Vie. Habla desde el día 1.'},price:280,img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80&auto=format&fit=crop',colors:['#1c6e8c','#c3623f','#35594a']},
- 'surf-pack':{cat:'surf',badge:{en:'Surf° · Hero',es:'Surf° · Estrella'},bc:'orange',tag:'A1–B2 · Surf',title:{en:'Spanish + Surf Pack',es:'Pack Español + Surf'},desc:{en:'15h Spanish + 3 surf @ Lobos + gear. The Analog look.',es:'15h español + 3 surf en Lobos + equipo. El look Analog.'},price:350,img:'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=700&q=80&auto=format&fit=crop',colors:['#0e4457','#f4a261']},
- 'online-pack10':{cat:'online',badge:{en:'Online',es:'Online'},bc:'sand',tag:'A1–C2 · Meet',title:{en:'Online Pack 10h 1-on-1',es:'Pack Online 10h 1-a-1'},desc:{en:'Google Meet · materials + club · flexible TZ.',es:'Google Meet · materiales + club · horario flexible.'},price:220,img:'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=700&q=80&auto=format&fit=crop',colors:['#111','#888']},
+ 'pres-intensivo':{cat:'presencial',badge:{en:'Bestseller',es:'Más vendido'},bc:'orange',tag:'A1–C1 · Presencial',title:{en:'Intensive Immersion 15h/week',es:'Inmersión Intensiva 15h/sem'},desc:{en:'Max 4 · Mon–Fri 10:00–13:00 · Group & 1-on-1. Speak from day 1.',es:'Máx 4 · Lun–Vie 10:00–13:00 · Grupal y personalizada. Habla desde el día 1.'},price:280,img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80&auto=format&fit=crop',colors:['#1c6e8c','#c3623f','#35594a']},
+ 'surf-pack':{cat:'surf',badge:{en:'Surf · Hero',es:'Surf · Estrella'},bc:'orange',tag:'A1–B2 · Surf',title:{en:'Spanish + Surf Pack',es:'Pack Español + Surf'},desc:{en:'15h Spanish + 3 surf @ Lobos + gear. The Analog look.',es:'15h español + 3 surf en Lobos + equipo. El look Analog.'},price:350,img:'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=700&q=80&auto=format&fit=crop',colors:['#0e4457','#f4a261']},
+ 'online-bas12':{cat:'online',badge:{en:'12 classes',es:'12 clases'},bc:'orange',tag:'A1–A2 · Meet',title:{en:'Online Basic — 12 classes',es:'Online Básico — 12 clases'},desc:{en:'Google Meet · group & 1-on-1 · PDF guide (5 pages/class) by email.',es:'Google Meet · grupal y personalizada · guía PDF (5 págs/clase) por email.'},price:300/* TODO: precio real cliente */,img:'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=700&q=80&auto=format&fit=crop',colors:['#111','#888']},
+ 'online-int24':{cat:'online',badge:{en:'24 classes',es:'24 clases'},bc:'orange',tag:'B1–B2 · Meet',title:{en:'Online Intermediate — 24 classes',es:'Online Intermedio — 24 clases'},desc:{en:'Google Meet · group & 1-on-1 · PDF guide (5 pages/class) by email.',es:'Google Meet · grupal y personalizada · guía PDF (5 págs/clase) por email.'},price:600/* TODO: precio real cliente */,img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80&auto=format&fit=crop',colors:['#1c6e8c','#c3623f']},
+ 'online-adv36':{cat:'online',badge:{en:'36 classes',es:'36 clases'},bc:'orange',tag:'C1–C2 · Meet',title:{en:'Online Advanced — 36 classes',es:'Online Avanzado — 36 clases'},desc:{en:'Google Meet · group & 1-on-1 · PDF guide (5 pages/class) by email.',es:'Google Meet · grupal y personalizada · guía PDF (5 págs/clase) por email.'},price:900/* TODO: precio real cliente */,img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80&auto=format&fit=crop',colors:['#35594a','#111']},
  'int-conv':{cat:'presencial',badge:{en:'B1–B2',es:'B1–B2'},bc:'sand',tag:'B1–B2 · Presencial',title:{en:'Conversation & Culture',es:'Conversación y Cultura'},desc:{en:'Slang, debates, storytelling over empanadas.',es:'Chilenismos, debates, historias con empanadas.'},price:280,img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=80&auto=format&fit=crop',colors:['#c3623f','#e9dcc3']},
  'adv-master':{cat:'presencial',badge:{en:'C1–C2',es:'C1–C2'},bc:'sand',tag:'C1–C2 · Presencial',title:{en:'Advanced Mastery',es:'Maestría Avanzada'},desc:{en:'Idioms, humor, volunteering, media.',es:'Modismos, humor, voluntariado, medios.'},price:300,img:'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=700&q=80&auto=format&fit=crop',colors:['#35594a','#111']},
- 'online-trial':{cat:'online',badge:{en:'Free trial',es:'Prueba gratis'},bc:'sand',tag:'All · Meet',title:{en:'Trial Class 30 min',es:'Clase Prueba 30 min'},desc:{en:'Meet your teacher, test your level. Free.',es:'Conoce tu profe, mide tu nivel. Gratis.'},price:0,img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80&auto=format&fit=crop',colors:['#fff','#111']},
  'salsa':{cat:'surf',tag:'Extra',title:{en:'Salsa Class',es:'Clase Salsa'},desc:{en:'Weekly rhythm.',es:'Ritmo semanal.'},price:15,img:'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&q=60&auto=format&fit=crop'},
  'empanada':{cat:'surf',tag:'Extra',title:{en:'Empanada Cooking',es:'Cocina Empanadas'},desc:{en:'Cook with Katta.',es:'Cocina con Katta.'},price:20,img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&q=60&auto=format&fit=crop'},
  'tour':{cat:'surf',tag:'Extra',title:{en:'Sunset Trip Lobos',es:'Atardecer Lobos'},desc:{en:'Group + mates.',es:'Grupal + mates.'},price:25,img:'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=200&q=60&auto=format&fit=crop'},
  'dinner':{cat:'surf',tag:'Extra',title:{en:'Friday Dinner',es:'Cena Viernes'},desc:{en:'Family night.',es:'Noche familiar.'},price:25,img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=60&auto=format&fit=crop'},
  'surf-extra':{cat:'surf',tag:'Extra',title:{en:'Extra Surf Lesson',es:'Clase Extra Surf'},desc:{en:'Punta de Lobos.',es:'Punta de Lobos.'},price:35,img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=200&q=60&auto=format&fit=crop'}
 };
-function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='en');});['btnES','btnESm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='es');});document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[l]);renderGrid();renderAddons();renderCart();}
+function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='en');});['btnES','btnESm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='es');});document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[l]);const wa=document.getElementById('waFloat');if(wa)wa.href='https://wa.me/56937479835?text='+encodeURIComponent(l==='es'?'¡Hola Huara! Quiero info sobre los programas de español en Pichilemu.':'Hi Huara! I want info about Spanish programs in Pichilemu.');renderGrid();renderAddons();renderCart();}
 function setFilter(f,btn){FILTER=f;document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGrid();}
 function renderGrid(){
- const ids=['pres-intensivo','surf-pack','online-pack10','int-conv','adv-master','online-trial'].filter(id=>FILTER==='all'||PRODUCTS[id].cat===FILTER);
- document.getElementById('productGrid').innerHTML=ids.map(id=>{const p=PRODUCTS[id];return `<div class="pcard"><div class="ph"><img src="${p.img}"><span class="badge ${p.bc}">${p.badge[LANG]}</span><button class="quick" onclick="addToCart('${id}')">+</button></div><div class="pb"><small>${p.tag}</small><h3>${p.title[LANG]}</h3><div class="price-row"><span class="price">${p.price===0?'Free':'$'+p.price}</span><span class="swatches">${p.colors.map(c=>`<i style="background:${c}"></i>`).join('')}</span></div><button onclick="quickView('${id}')" style="margin-top:10px;width:100%;border:1px solid var(--line);background:transparent;border-radius:5px;padding:10px;font:600 12px Inter;cursor:pointer">Quick view</button></div></div>`}).join('');
+ const ids=['pres-intensivo','surf-pack','online-bas12','int-conv','adv-master','online-int24','online-adv36'].filter(id=>FILTER==='all'||PRODUCTS[id].cat===FILTER);
+ document.getElementById('productGrid').innerHTML=ids.map(id=>{const p=PRODUCTS[id];return `<div class="pcard"><div class="ph"><img src="${p.img}"><span class="badge ${p.bc}">${p.badge[LANG]}</span><button class="quick" onclick="addToCart('${id}')">+</button></div><div class="pb"><small>${p.tag}</small><h3>${p.title[LANG]}</h3><div class="price-row"><span class="price">${p.price===0?'Free':'$'+p.price}</span></div>${startHTML(id)}<button onclick="quickView('${id}')" style="margin-top:10px;width:100%;border:1px solid var(--line);background:transparent;border-radius:5px;padding:10px;font:600 12px Inter;cursor:pointer">Quick view</button></div></div>`}).join('');
 }
 function renderAddons(){
  document.getElementById('addonList').innerHTML=['salsa','empanada','tour','dinner','surf-extra'].map(id=>{const p=PRODUCTS[id];return `<div class="addon-row"><img src="${p.img}"><div><strong>${p.title[LANG]}</strong><small>${p.desc[LANG]} · $${p.price}</small></div><button onclick="addToCart('${id}')">Add +</button></div>`}).join('');
 }
-function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();toast((LANG==='en'?'Added to bag ✓ ':'Agregado ✓ ')+PRODUCTS[id].title[LANG]);toggleCart(true);}
+function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();toast((LANG==='en'?'Added to order ✓ ':'Agregado ✓ ')+PRODUCTS[id].title[LANG]);toggleCart(true);}
 function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];renderCart();}
 function totals(){return Object.entries(cart).reduce((s,[k,q])=>s+PRODUCTS[k].price*q,0);}
 function count(){return Object.values(cart).reduce((a,b)=>a+b,0);}
@@ -401,7 +554,7 @@ function renderCart(){
  document.getElementById('drawerTotal').textContent='$'+t;document.getElementById('sumTotal').textContent='$'+t;
  const ids=Object.keys(cart);
  document.getElementById('cartItems').innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS[id];return `<div class="citem"><img src="${p.img}"><div><strong style="font-size:13px">${p.title[LANG]}</strong><br><small style="color:var(--muted)">$${p.price}</small><br><span class="qty"><button onclick="changeQty('${id}',-1)">−</button><b style="padding:0 8px">${cart[id]}</b><button onclick="changeQty('${id}',1)">+</button></span></div><b>$${p.price*cart[id]}</b></div>`}).join(''):`<p style="color:var(--muted);font-size:13px">Empty — pick a program 🏄</p>`;
- document.getElementById('summaryLines').innerHTML=ids.length?ids.map(id=>`<div class="sum-line"><span>${cart[id]}× ${PRODUCTS[id].title[LANG]}</span><b>$${PRODUCTS[id].price*cart[id]}</b></div>`).join(''):`<p style="opacity:.6;font-size:13px">Bag empty — add a program above.</p>`;
+ document.getElementById('summaryLines').innerHTML=ids.length?ids.map(id=>`<div class="sum-line"><span>${cart[id]}× ${PRODUCTS[id].title[LANG]}</span><b>$${PRODUCTS[id].price*cart[id]}</b></div>`).join(''):`<p style="opacity:.6;font-size:13px">Order is empty — add a program above.</p>`;
  const pct=Math.min(100,t/150*100);document.getElementById('shipBar').style.width=pct+'%';
  document.getElementById('shipMsg').textContent=t>=150?'🎉 Free empanada night unlocked!':`Add $${150-t} for a free empanada night 🥟`;
 }
@@ -409,16 +562,79 @@ function toggleCart(o){document.getElementById('cartDrawer').classList.toggle('o
 function toggleMenu(o){document.getElementById('mmenu').classList.toggle('open',o);document.getElementById('overlay').classList.toggle('show',o);}
 function quickView(id){const p=PRODUCTS[id];document.getElementById('qvImg').src=p.img;document.getElementById('qvTag').textContent='● '+p.tag;document.getElementById('qvTitle').textContent=p.title[LANG];document.getElementById('qvDesc').textContent=p.desc[LANG];document.getElementById('qvPrice').textContent=p.price===0?'Free':'$'+p.price;document.getElementById('qvAdd').onclick=()=>{addToCart(id);closeQV();};document.getElementById('qv').classList.add('show');}
 function closeQV(){document.getElementById('qv').classList.remove('show');}
-function adaptForm(){const m=document.getElementById('fMod').value;document.getElementById('presFields').style.display=m==='presencial'?'block':'none';document.getElementById('onlineFields').style.display=m==='online'?'block':'none';}
-function checkout(){if(!count()){toast(LANG==='en'?'Bag empty 🙂':'Bolsa vacía 🙂');return;}toast((LANG==='en'?'Order received ✓ $':'Pedido recibido ✓ $')+totals()+' — confirm in 24h 🤙');cart={};renderCart();}
+function adaptForm(){const m=document.getElementById('fMod').value;document.getElementById('presFields').style.display=m.indexOf('pres')===0?'block':'none';document.getElementById('onlineFields').style.display=m.indexOf('online')===0?'block':'none';}
+let lastOrderURL='';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function checkout(){
+ if(!count()){toast(LANG==='en'?'Order is empty — add a program first':'El pedido está vacío — agrega un programa');return;}
+ const nameEl=document.getElementById('fName'),emailEl=document.getElementById('fEmail');
+ const name=nameEl.value.trim(),email=emailEl.value.trim();
+ const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+ nameEl.classList.toggle('invalid',!name);
+ emailEl.classList.toggle('invalid',!emailOk);
+ if(!name||!emailOk){toast(LANG==='en'?'Please add your name and a valid email':'Agrega tu nombre y un email válido');return;}
+ const es=LANG==='es';
+ const modSel=document.getElementById('fMod');const modTxt=modSel.options[modSel.selectedIndex].text;
+ const lvl=document.getElementById('fLevel');const lvlTxt=lvl.options[lvl.selectedIndex].text;
+ const isPres=modSel.value.indexOf('pres')===0;
+ const date=document.getElementById('fDate').value;
+ const notes=document.getElementById('fNotes').value.trim();
+ let extra=modTxt+' · '+(es?'Nivel: ':'Level: ')+lvlTxt;
+ if(isPres){extra+=' · '+(es?'Clases lun–vie 10:00–13:00 · ':'Classes Mon–Fri 10:00–13:00 · ')+document.getElementById('fAcc').value;}
+ else{const pr=document.getElementById('fProg');extra+=' · '+pr.options[pr.selectedIndex].text+' · '+document.getElementById('fTZ').value;}
+ const lines=Object.keys(cart).map(id=>'- '+cart[id]+'x '+PRODUCTS[id].title[LANG]+' ($'+(PRODUCTS[id].price*cart[id])+')');
+ const msg=(es?'Hola Huara Spanish School, quiero reservar:':'Hi Huara Spanish School, I want to book:')+'\n'+lines.join('\n')+'\n'+'Total: $'+totals()+' USD\n— '+name+' ('+email+')\n'+(es?'Inicio: ':'Start: ')+date+' · '+extra+(notes?'\n'+(es?'Notas: ':'Notes: ')+notes:'');
+ lastOrderURL='https://wa.me/56937479835?text='+encodeURIComponent(msg);
+ window.open(lastOrderURL,'_blank','noopener');
+ document.getElementById('omTitle').textContent=es?'¡Pedido listo!':'Order ready!';
+ document.getElementById('omRecap').innerHTML=lines.map(l=>'<div>'+esc(l)+'</div>').join('')+'<div style="margin-top:8px;font-weight:800">Total: $'+totals()+' USD — '+esc(name)+'</div>';
+ document.getElementById('omSteps').innerHTML=
+  '<div class="ostep"><span class="onum">1</span><span>'+(es?'Envía el mensaje que se abrió en WhatsApp.':'Send the message that opened in WhatsApp.')+'</span></div>'+
+  '<div class="ostep"><span class="onum">2</span><span>'+(es?'Confirmamos disponibilidad en 24h.':'We confirm availability within 24h.')+'</span></div>'+
+  '<div class="ostep"><span class="onum">3</span><span>'+(es?'Te enviamos el link de pago seguro (Flow / MercadoPago). Sin pagos en esta web.':'We send you the secure payment link (Flow / MercadoPago). No payment on this site.')+'</span></div>';
+ document.getElementById('omWA').onclick=()=>window.open(lastOrderURL,'_blank','noopener');
+ document.getElementById('omEmpty').textContent=es?'Vaciar pedido':'Empty order';
+ document.getElementById('omClose').textContent=es?'Cerrar':'Close';
+ document.getElementById('orderModal').classList.add('show');
+}
+function closeOrderModal(){document.getElementById('orderModal').classList.remove('show');}
+function emptyBag(){cart={};renderCart();closeOrderModal();}
+const LIKE_BASE={r1:24,r2:18,r3:31};
+function getLikes(){try{return JSON.parse(localStorage.getItem('huara_likes')||'{}')}catch(e){return{}}}
+function initLikes(){const mine=getLikes();document.querySelectorAll('[data-like]').forEach(b=>{const id=b.getAttribute('data-like');const on=!!mine[id];b.classList.toggle('on',on);b.querySelector('b').textContent=LIKE_BASE[id]+(on?1:0);b.onclick=()=>{const m=getLikes();if(m[id])delete m[id];else m[id]=1;try{localStorage.setItem('huara_likes',JSON.stringify(m))}catch(e){}initLikes();};});}
+function shareReview(id){const card=document.querySelector('[data-post="'+id+'"]');const q=card?card.querySelector('.pq').textContent:'';const a=card?card.querySelector('.post-head strong').textContent:'';window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Mira esta reseña de Huara Spanish School: ':'Check this Huara Spanish School review: ')+q+' — '+a), '_blank','noopener');}
+function shareSite(){window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Te recomiendo Huara Spanish School en Pichilemu, Chile: ':'I recommend Huara Spanish School in Pichilemu, Chile: ')+location.href),'_blank','noopener');}
 let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2300);}
 window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('solid',scrollY>window.innerHeight*.55));
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* La escuela edita aquí: días para el inicio (d) y cupos libres (s) por programa */
+const STARTS={
+ 'pres-intensivo':{d:4,s:4},
+ 'surf-pack':{d:4,s:2},
+ 'online-bas12':{d:2,s:6},
+ 'int-conv':{d:6,s:3},
+ 'adv-master':{d:9,s:5},
+ 'online-int24':{d:2,s:6},
+ 'online-adv36':{d:2,s:6}
+};
+const START_AT={};Object.keys(STARTS).forEach(id=>START_AT[id]=Date.now()+STARTS[id].d*864e5);
+function fmtLeft(ms){if(ms<0)ms=0;const t=Math.floor(ms/1e3),d=Math.floor(t/86400),h=String(Math.floor(t%86400/3600)).padStart(2,'0'),m=String(Math.floor(t%3600/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');return (d>0?d+'d ':'')+h+':'+m+':'+s;}
+function tickStarts(){document.querySelectorAll('[data-cd]').forEach(el=>{const id=el.getAttribute('data-cd');if(START_AT[id])el.textContent=fmtLeft(START_AT[id]-Date.now());});}
+function startHTML(id){
+ const s=STARTS[id];if(!s)return '';
+ let cls='ok',txt;
+ if(s.s<=1){cls='full';txt=LANG==='en'?'Last spot!':'¡Último cupo!';}
+ else if(s.s<=3){cls='warn';txt=LANG==='en'?'Only '+s.s+' left!':'¡Solo '+s.s+'!';}
+ else{txt=s.s+(LANG==='en'?' spots':' cupos');}
+ return `<div class="nextart ${cls}"><i></i><b>${txt}</b><span data-cd="${id}">…</span></div>`;
+}
 // countdown to next Monday
-function tick(){const n=new Date();const d=new Date(n);d.setDate(n.getDate()+((8-n.getDay())%7||7));d.setHours(9,0,0,0);let s=Math.max(0,(d-n)/1e3);const dd=Math.floor(s/86400);s%=86400;const hh=Math.floor(s/3600),mm=Math.floor(s%3600/60),ss=Math.floor(s%60);document.getElementById('cdD').textContent=String(dd).padStart(2,'0');document.getElementById('cdH').textContent=String(hh).padStart(2,'0');document.getElementById('cdM').textContent=String(mm).padStart(2,'0');document.getElementById('cdS').textContent=String(ss).padStart(2,'0');}
+function tick(){const n=new Date();const d=new Date(n);d.setDate(n.getDate()+((8-n.getDay())%7||7));d.setHours(9,0,0,0);let s=Math.max(0,(d-n)/1e3);const dd=Math.floor(s/86400);s%=86400;const hh=Math.floor(s/3600),mm=Math.floor(s%3600/60),ss=Math.floor(s%60);document.getElementById('cdD').textContent=String(dd).padStart(2,'0');document.getElementById('cdH').textContent=String(hh).padStart(2,'0');document.getElementById('cdM').textContent=String(mm).padStart(2,'0');document.getElementById('cdS').textContent=String(ss).padStart(2,'0');tickStarts();}
 setInterval(tick,1000);tick();
-renderGrid();renderAddons();renderCart();
+// duplicate strip for seamless loop
+const st=document.getElementById('stripTrack');if(st)st.innerHTML+=st.innerHTML;
+renderGrid();renderAddons();renderCart();initLikes();
 document.getElementById('fDate').valueAsDate=new Date(Date.now()+7*864e5);
 </script>
 </body>
