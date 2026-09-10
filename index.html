@@ -250,7 +250,7 @@ header.at-bottom{opacity:0;pointer-events:none}
 .method-panel .sub{color:var(--muted);font-size:18px;max-width:640px}
 .m-item{border-top:1px solid var(--line);padding-top:20px;transition:transform .3s,border-color .3s;position:relative;z-index:1}
 .m-item:hover{transform:translateY(-5px);border-color:var(--accent)}
-.m-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.m-top{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-bottom:14px}
 .m-num{font:800 46px 'Archivo';letter-spacing:-.03em;color:rgba(19,20,20,.22)}
 @supports(-webkit-text-stroke:1px #fff){.m-num{color:transparent;-webkit-text-stroke:1.5px rgba(19,20,20,.5)}}
 .m-ico{width:46px;height:46px;border-radius:5px;background:rgba(255,77,0,.1);display:grid;place-items:center;flex-shrink:0}
@@ -489,7 +489,9 @@ footer h4{font-size:17px}
   <div class="hero-content">
     <div class="eyebrow"><i></i><span data-en="Pichilemu - Chile 🇨🇱" data-es="Pichilemu - Chile 🇨🇱">Pichilemu - Chile 🇨🇱</span></div>
     <h1><span data-en="Spanish School for" data-es="Español hecho para">Spanish School for</span> <u data-en="Movement" data-es="moverse">Movement</u></h1>
-    <p class="sub" data-en="Three lines for the classroom, the wave, and what comes after. Small groups (max 4) in a homey house with terrace, kitchen & garden — plus surf, salsa and empanadas." data-es="Tres líneas para el aula, la ola y lo que viene después. Grupos pequeños (máx. 4) en casa acogedora con terraza, cocina y jardín — más surf, salsa y empanadas.">Three lines for the classroom, the wave, and what comes after. Small groups (max 4) in a homey house with terrace, kitchen & garden — plus surf, salsa and empanadas.</p>
+    <p class="sub" data-en="Three lines for the classroom<br>
+    Small groups max 4<br>house with terrace<br>
+    — plus surf, salsa and empanadas." data-es="Tres líneas para el aula<br>Grupos pequeños máx. 4<br>casa con terraza<br>— más surf, salsa y empanadas.">Three lines for the classroom, the wave, and what comes after. Small groups (max 4) in a homey house with terrace, kitchen & garden — plus surf, salsa and empanadas.</p>
     <div class="hero-ctas">
       <button class="btn-pill btn-white" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})"><span data-en="See the programs" data-es="Ver los programas">See the programs</span></button>
       <a class="link-arrow" href="#casa" style="color:#fff"><span data-en="Our story" data-es="Nuestra historia">Our story</span> →</a>
@@ -538,7 +540,7 @@ footer h4{font-size:17px}
   <div class="met4">
     <div class="m-item"><div class="m-top"><span class="m-num">01</span><span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9h8M8 12.5h5"/></svg></span></div><strong data-en="Chilean slang you'll use" data-es="Chilenismos que sí usarás">Chilean slang you'll use</strong><p data-en="Cachai, bacán, fome… local words and expressions from day one." data-es="Cachai, bacán, fome… palabras y expresiones locales desde el día uno.">Cachai, bacán, fome… local words and expressions from day one.</p></div>
     <div class="m-item"><div class="m-top"><span class="m-num">02</span><span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 17h16"/><path d="M12 8a8 8 0 0 1 8 8H4a8 8 0 0 1 8-8z"/><circle cx="12" cy="5.5" r="1.2"/></svg></span></div><strong data-en="Recipes & ingredients" data-es="Recetas e ingredientes">Recipes & ingredients</strong><p data-en="Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once." data-es="Vocabulario de cocina chilena aprendido cocinando: empanadas, pebre, once.">Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once.</p></div>
-    <div class="m-item"><div class="m-top"><span class="m-num">03</span><span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 10h16l-1.8 8H6.2L4 10z"/><path d="M8.5 10L12 4l3.5 6"/><path d="M10 14h4"/></svg></span></div><strong data-en="Numbers at the market" data-es="Números en la feria">Numbers at the market</strong><p data-en="Prices, change and bargaining while shopping for real." data-es="Precios, vuelto y regateo practicando compras reales.">Prices, change and bargaining while shopping for real.</p></div>
+    <div class="m-item"><div class="m-top"><span class="m-num">03</span><span class="m-ico"><svg viewBox="0 0 24 24" style="width:34px;height:34px"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span></div><strong data-en="Numbers at the market" data-es="Números en la feria">Numbers at the market</strong><p data-en="Prices, change and bargaining while shopping for real." data-es="Precios, vuelto y regateo practicando compras reales.">Prices, change and bargaining while shopping for real.</p></div>
     <div class="m-item"><div class="m-top"><span class="m-num">04</span><span class="m-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2z"/></svg></span></div><strong data-en="Real-life conversation" data-es="Conversación real">Real-life conversation</strong><p data-en="Hotels, tours, restaurants and daily life: speak from day one." data-es="Hotel, tours, restaurantes y vida diaria: habla desde el día uno.">Hotels, tours, restaurants and daily life: speak from day one.</p></div>
   </div>
 </div>
