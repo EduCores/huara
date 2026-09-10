@@ -6,6 +6,7 @@
 <title>HUARA° — Spanish School Pichilemu | Analog Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{
   --bg:#f4efe6; --bg2:#ece4d3; --ink:#131414; --muted:#6b6b66;
@@ -134,8 +135,8 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .addon-row img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex-shrink:0}
 .addon-row strong{font-size:14px;display:block}
 .addon-row small{color:var(--muted);font-size:12px}
-.addon-row button{margin-left:auto;border:1px solid #111;background:transparent;border-radius:5px;padding:9px 18px;font:600 12px 'Inter';cursor:pointer;white-space:nowrap;flex-shrink:0}
-.addon-row button:hover{background:#111;color:#fff}
+.addon-row button{margin-left:auto;border:1px solid #111;background:#111;color:#fff;border-radius:5px;padding:9px 18px;font:600 12px 'Inter';cursor:pointer;white-space:nowrap;flex-shrink:0}
+.addon-row button:hover{background:transparent;color:#111}
 .checkout{background:#111;color:#fff;border-radius:14px;padding:26px;position:sticky;top:90px;min-width:0}
 .checkout h3{font-size:26px}
 .field{margin:12px 0;min-width:0}
@@ -169,6 +170,7 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .social-cta{display:flex;gap:10px;flex-wrap:wrap}
 .post-head{display:flex;gap:12px;align-items:center}
 .avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 15px 'Archivo';flex-shrink:0}
+.avatar-img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .post-head>div{min-width:0;flex:1}
 .post-head strong{font-size:14px}
 .post-head small{color:var(--muted);font-size:12px;display:block}
@@ -182,6 +184,13 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .like.on{background:#fdecea;border-color:#e0393e;color:#e0392b}
 .shareb{border:1px solid var(--line);background:transparent;border-radius:5px;padding:7px 12px;font:700 12px 'Inter';cursor:pointer;color:var(--ink)}
 .via{margin-left:auto;font-size:11px;color:var(--muted)}
+.feed{overflow:hidden;overflow:clip;max-width:100%;margin:10px auto 40px}
+.feed-track{display:flex;width:max-content;animation:feedScroll 55s linear infinite}
+.feed-track:hover{animation-play-state:paused}
+.feed-track .post{flex:0 0 320px;max-width:84vw;margin-right:16px}
+.post-img{width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:12px}
+@keyframes feedScroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.feed-track{animation:none}}
 .ig-head{display:flex;align-items:center;gap:14px;margin:26px 0 14px}
 .ig-ava{width:52px;height:52px;border-radius:50%;background:linear-gradient(45deg,#f4a261,#c3623f,#1c6e8c);display:grid;place-items:center;color:#fff;font:800 18px 'Archivo';flex-shrink:0;padding:2px}
 .ig-ava b{background:var(--bg);color:var(--ink);width:100%;height:100%;border-radius:50%;display:grid;place-items:center}
@@ -195,20 +204,48 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .ig-item span{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,15,18,.45);color:#fff;font-weight:700;font-size:14px;opacity:0;transition:.25s}
 .ig-item:hover span{opacity:1}
 @media(max-width:1000px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
+.fb-row{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;max-width:100%}
+.fb-post{flex:0 0 340px;max-width:84vw;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;scroll-snap-align:start}
+.fb-post iframe{width:100%;border:0;display:block;border-radius:8px;background:#fff}
 .met4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:22px auto 44px}
 @media(max-width:1000px){.met4{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.met4{grid-template-columns:1fr}}
+.method-panel{position:relative;padding:8px 0}
+.method-panel .eyebrow-lite{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.18em}
+.method-panel h2{color:var(--ink)}
+.method-panel .sub{color:var(--muted);font-size:14px;max-width:640px}
+.m-item{border-top:1px solid var(--line);padding-top:20px;transition:transform .3s,border-color .3s;position:relative;z-index:1}
+.m-item:hover{transform:translateY(-5px);border-color:var(--accent)}
+.m-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.m-num{font:800 46px 'Archivo';letter-spacing:-.03em;color:rgba(19,20,20,.22)}
+@supports(-webkit-text-stroke:1px #fff){.m-num{color:transparent;-webkit-text-stroke:1.5px rgba(19,20,20,.5)}}
+.m-ico{width:46px;height:46px;border-radius:5px;background:rgba(255,77,0,.1);display:grid;place-items:center;flex-shrink:0}
+.m-ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.m-item strong{font-size:16px;display:block;margin-bottom:8px;color:var(--ink)}
+.m-item p{font-size:13px;line-height:1.65;color:var(--muted)}
+@media(max-width:560px){.method-panel{padding:4px 0}}
 /* FAQ */
 .faq{max-width:760px;margin:0 auto 60px}
 .faq details{border-bottom:1px solid var(--line);padding:18px 0;cursor:pointer}
 .faq summary{font-family:'Archivo';font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
 .faq summary::after{content:"+";font-size:22px;flex-shrink:0}
 /* FOOTER */
-footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20px;margin-top:20px;overflow:clip}
+footer{background:#0b0e11;color:#fff;padding:50px 0 20px;margin-top:20px;overflow:clip;position:relative}
+.foot-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+footer::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,17,.74),rgba(10,14,17,.55));z-index:1}
+footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:26px}
 .news{display:flex;background:#222;border:1px solid rgba(255,255,255,.16);border-radius:5px;padding:5px;margin-top:14px;max-width:100%}
 .news input{flex:1;min-width:0;background:transparent;border:0;color:#fff;padding:12px 16px;outline:none;font:400 14px 'Inter'}
 .news button{background:#fff;color:#111;border:0;border-radius:5px;padding:12px 22px;font-weight:700;cursor:pointer;flex-shrink:0}
+.contact-line{display:flex;gap:10px;align-items:center;font-size:13px;opacity:.85;padding:5px 0}
+.contact-line i{width:18px;text-align:center;color:var(--accent);flex-shrink:0}
+.social-row{display:flex;gap:10px;margin-top:14px}
+.soc{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:.25s;padding:0}
+.soc:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+.soc svg{width:20px;height:20px;display:block}
+.pay-strip{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:28px 0 0;padding:0 16px}
+.pay-strip span{font-size:11px;font-weight:700;letter-spacing:.08em;padding:7px 14px;border-radius:5px;opacity:.75}
 .giant{font-family:'Archivo';font-weight:900;font-size:clamp(60px,18vw,190px);text-align:center;letter-spacing:-.05em;line-height:1.15;margin:30px 0 10px;opacity:.95;white-space:nowrap;max-width:100%;animation:giantSway 12s ease-in-out infinite;will-change:transform}
 .giant>span{display:inline-block;will-change:transform;animation:letterWave 6s ease-in-out infinite}
 .giant>span:nth-child(1){animation-delay:0s}
@@ -252,6 +289,9 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 .qv-card{background:var(--bg);border-radius:16px;max-width:860px;width:100%;display:grid;grid-template-columns:1fr 1fr;overflow:auto;max-height:90vh;max-height:90dvh}
 .qv-card img{width:100%;height:100%;object-fit:cover;min-height:320px}
 .qv-info{padding:30px;overflow:auto;min-width:0}
+.top-btn{position:fixed;right:20px;bottom:84px;z-index:150;width:56px;height:56px;border-radius:5px;background:#111;color:#fff;border:0;display:grid;place-items:center;font-size:22px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:.3s;opacity:0;pointer-events:none;transform:translateY(10px)}
+.top-btn.show{opacity:1;pointer-events:auto;transform:none}
+.top-btn:hover{background:var(--accent)}
 .wa-float{position:fixed;right:20px;bottom:20px;z-index:150;width:56px;height:56px;border-radius:5px;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.45);transition:transform .25s;animation:waIn .6s ease .8s backwards}
 .wa-float:hover{transform:translateY(-3px) scale(1.04)}
 .wa-float svg{width:30px;height:30px;fill:#fff}
@@ -273,7 +313,7 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 .reveal{opacity:0;transform:translateY(22px);transition:.7s}
 .reveal.visible{opacity:1;transform:none;padding:60px 20px 0}
 @media(max-width:1000px){.grid4{grid-template-columns:1fr 1fr}.edit,.split2,.qv-card,.foot-grid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.hero-top-img{height:30vh}.checkout{position:static}.hide-m{display:none}.split2{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:560px){.grid4{grid-template-columns:1fr 1fr;gap:10px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:60px;padding:0 12px;gap:8px}.hleft{gap:0}.hleft .icon-btn:last-child{display:none}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:23px}.bag-btn{padding:7px 12px;font-size:12px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 16px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 16px}.checkout{padding:20px 16px}.addons{padding:16px}}
+@media(max-width:560px){.container{padding:0 10px}.grid4{grid-template-columns:1fr 1fr;gap:10px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:60px;padding:0 12px;gap:8px}.hleft{gap:0}.hleft .icon-btn:last-child{display:none}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:23px}.bag-btn{padding:7px 12px;font-size:12px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 10px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 10px}.checkout{padding:20px 16px}.addons{padding:16px}}
 @media(max-width:380px){.grid4{grid-template-columns:1fr}.hero h1{font-size:40px}.addon-row{flex-wrap:wrap}.addon-row button{margin-left:0;width:100%}}
 </style>
 </head>
@@ -356,15 +396,17 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 
 <!-- METHOD -->
 <div class="container reveal" id="metodo">
-  <p style="font-size:12px;font-weight:600;letter-spacing:.14em">● <span data-en="OUR METHOD" data-es="NUESTRO MÉTODO">OUR METHOD</span></p>
-  <h2 style="font-size:clamp(34px,4.5vw,58px);margin:8px 0" data-en="Spanish you use, not memorize" data-es="Español que se usa, no que se memoriza">Spanish you use, not memorize</h2>
-  <p style="font-size:14px;color:var(--muted);max-width:640px" data-en="Every class mixes language with real Chilean life: local words, food, shopping and street conversation." data-es="Cada clase mezcla idioma con vida chilena real: palabras locales, comida, compras y conversación cotidiana.">Every class mixes language with real Chilean life: local words, food, shopping and street conversation.</p>
+<div class="method-panel">
+  <p class="eyebrow-lite">● <span data-en="OUR METHOD" data-es="NUESTRO MÉTODO">OUR METHOD</span></p>
+  <h2 style="font-size:clamp(34px,4.5vw,58px);margin:10px 0" data-en="Spanish you use, not memorize" data-es="Español que se usa, no que se memoriza">Spanish you use, not memorize</h2>
+  <p class="sub" data-en="Every class mixes language with real Chilean life: local words, food, shopping and street conversation." data-es="Cada clase mezcla idioma con vida chilena real: palabras locales, comida, compras y conversación cotidiana.">Every class mixes language with real Chilean life: local words, food, shopping and street conversation.</p>
   <div class="met4">
-    <div class="rev">🗣️<p><strong data-en="Chilean slang you'll use" data-es="Chilenismos que sí usarás">Chilean slang you'll use</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Cachai, bacán, fome… local words and expressions from day one." data-es="Cachai, bacán, fome… palabras y expresiones locales desde el día uno.">Cachai, bacán, fome… local words and expressions from day one.</p></div>
-    <div class="rev">🍲<p><strong data-en="Recipes & ingredients" data-es="Recetas e ingredientes">Recipes & ingredients</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once." data-es="Vocabulario de cocina chilena aprendido cocinando: empanadas, pebre, once.">Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once.</p></div>
-    <div class="rev">🛒<p><strong data-en="Numbers at the market" data-es="Números en la feria">Numbers at the market</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Prices, change and bargaining while shopping for real." data-es="Precios, vuelto y regateo practicando compras reales.">Prices, change and bargaining while shopping for real.</p></div>
-    <div class="rev">🧭<p><strong data-en="Real-life conversation" data-es="Conversación real">Real-life conversation</strong></p><p style="font-size:13px;color:var(--muted)" data-en="Hotels, tours, restaurants and daily life: speak from day one." data-es="Hotel, tours, restaurantes y vida diaria: habla desde el día uno.">Hotels, tours, restaurants and daily life: speak from day one.</p></div>
+    <div class="m-item"><div class="m-top"><span class="m-num">01</span><span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9h8M8 12.5h5"/></svg></span></div><strong data-en="Chilean slang you'll use" data-es="Chilenismos que sí usarás">Chilean slang you'll use</strong><p data-en="Cachai, bacán, fome… local words and expressions from day one." data-es="Cachai, bacán, fome… palabras y expresiones locales desde el día uno.">Cachai, bacán, fome… local words and expressions from day one.</p></div>
+    <div class="m-item"><div class="m-top"><span class="m-num">02</span><span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 17h16"/><path d="M12 8a8 8 0 0 1 8 8H4a8 8 0 0 1 8-8z"/><circle cx="12" cy="5.5" r="1.2"/></svg></span></div><strong data-en="Recipes & ingredients" data-es="Recetas e ingredientes">Recipes & ingredients</strong><p data-en="Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once." data-es="Vocabulario de cocina chilena aprendido cocinando: empanadas, pebre, once.">Chilean kitchen vocabulary learned by cooking: empanadas, pebre, once.</p></div>
+    <div class="m-item"><div class="m-top"><span class="m-num">03</span><span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 10h16l-1.8 8H6.2L4 10z"/><path d="M8.5 10L12 4l3.5 6"/><path d="M10 14h4"/></svg></span></div><strong data-en="Numbers at the market" data-es="Números en la feria">Numbers at the market</strong><p data-en="Prices, change and bargaining while shopping for real." data-es="Precios, vuelto y regateo practicando compras reales.">Prices, change and bargaining while shopping for real.</p></div>
+    <div class="m-item"><div class="m-top"><span class="m-num">04</span><span class="m-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2z"/></svg></span></div><strong data-en="Real-life conversation" data-es="Conversación real">Real-life conversation</strong><p data-en="Hotels, tours, restaurants and daily life: speak from day one." data-es="Hotel, tours, restaurantes y vida diaria: habla desde el día uno.">Hotels, tours, restaurants and daily life: speak from day one.</p></div>
   </div>
+</div>
 </div>
 
 <!-- SURF FULL -->
@@ -426,36 +468,64 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
       <p style="font-size:12px;font-weight:600;letter-spacing:.14em">● <span data-en="COMMUNITY" data-es="COMUNIDAD">COMMUNITY</span></p>
       <h2 data-en="Loved by students worldwide" data-es="Amada por estudiantes de todo el mundo">Loved by students worldwide</h2>
       <div class="score"><strong>4.9</strong><span class="waves-emoji">🌊🌊🌊🌊🌊</span><small data-en="127 verified reviews" data-es="127 reseñas verificadas">127 verified reviews</small></div>
-      <div class="plats"><span>G 5.0 · Google</span><a href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">◎ @huaraspanishschool</a></div>
+      <div class="plats"><span>G 5.0 · Google</span><a href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">◎ @huaraspanishschool</a><a href="https://www.facebook.com/huaraspanishschool/?locale=es_LA" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">f huaraspanishschool</a></div>
     </div>
     <div class="social-cta">
       <a class="btn-pill btn-dark" href="#" onclick="return false"><span data-en="★ Review us on Google" data-es="★ Opina en Google">★ Review us on Google</span></a>
       <button class="btn-pill" style="background:#25d366;color:#fff" onclick="shareSite()"><span data-en="Share ↗" data-es="Compartir ↗">Share ↗</span></button>
     </div>
   </div>
-  <div class="reviews">
+  <div class="feed"><div class="feed-track" id="feedTrack">
     <article class="rev post" data-post="r1">
-      <div class="post-head"><span class="avatar" style="background:linear-gradient(135deg,#1c6e8c,#0e4457)">LM</span><div><strong>Lena M.</strong><small data-en="Germany · 2 weeks ago" data-es="Alemania · hace 2 sem">Germany · 2 weeks ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80&auto=format&fit=crop" alt="Lena M."><div><strong>Lena M.</strong><small data-en="Germany · 2 weeks ago" data-es="Alemania · hace 2 sem">Germany · 2 weeks ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
       <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
       <p class="pq">"I came for 2 weeks and stayed 2 months. Classes + surf + Friday dinners feel like family."</p>
       <div class="post-tags"><span>B1→B2</span><span>8 weeks</span><span>Surf</span></div>
       <div class="post-foot"><button class="like" data-like="r1">♥ <b>24</b></button><button class="shareb" onclick="shareReview('r1')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Google</span></div>
     </article>
     <article class="rev post" data-post="r2">
-      <div class="post-head"><span class="avatar" style="background:linear-gradient(135deg,#c3623f,#f4a261)">JT</span><div><strong>Jake T.</strong><small data-en="USA · 1 month ago" data-es="EE.UU. · hace 1 mes">USA · 1 month ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80&auto=format&fit=crop" alt="Jake T."><div><strong>Jake T.</strong><small data-en="USA · 1 month ago" data-es="EE.UU. · hace 1 mes">USA · 1 month ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
       <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
       <p class="pq">"Analog vibe, real Chile. Learned more speaking on the terrace than in 2 years of app."</p>
       <div class="post-tags"><span>A2→B1</span><span>4 weeks</span><span>Terrace</span></div>
       <div class="post-foot"><button class="like" data-like="r2">♥ <b>18</b></button><button class="shareb" onclick="shareReview('r2')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Instagram</span></div>
     </article>
     <article class="rev post" data-post="r3">
-      <div class="post-head"><span class="avatar" style="background:linear-gradient(135deg,#35594a,#0e4457)">SR</span><div><strong>Sofia R.</strong><small data-en="Australia · 2 months ago" data-es="Australia · hace 2 meses">Australia · 2 months ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop" alt="Sofia R."><div><strong>Sofia R.</strong><small data-en="Australia · 2 months ago" data-es="Australia · hace 2 meses">Australia · 2 months ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
       <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
       <p class="pq">"Online pack kept my level sharp from Berlin. Then I flew for the surf pack. Worth it."</p>
       <div class="post-tags"><span>B2→C1</span><span>Online + Surf</span></div>
       <div class="post-foot"><button class="like" data-like="r3">♥ <b>31</b></button><button class="shareb" onclick="shareReview('r3')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Google</span></div>
     </article>
-  </div>
+    <article class="rev post" data-post="r4">
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&auto=format&fit=crop" alt="Marie F."><div><strong>Marie F.</strong><small data-en="France · 3 weeks ago" data-es="Francia · hace 3 sem">France · 3 weeks ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"I finally dare to speak. Ordering seafood in Spanish at the cove felt like a victory."</p>
+      <div class="post-tags"><span>A1→A2</span><span>2 weeks</span><span>Food</span></div>
+      <div class="post-foot"><button class="like" data-like="r4">♥ <b>15</b></button><button class="shareb" onclick="shareReview('r4')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Instagram</span></div>
+    </article>
+    <article class="rev post" data-post="r5">
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop" alt="Tom H."><div><strong>Tom H.</strong><small data-en="UK · 1 week ago" data-es="Reino Unido · hace 1 sem">UK · 1 week ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"Surf in the morning, subjunctive in the afternoon. Best combo in Chile."</p>
+      <div class="post-tags"><span>B1</span><span>3 weeks</span><span>Surf</span></div>
+      <div class="post-foot"><button class="like" data-like="r5">♥ <b>27</b></button><button class="shareb" onclick="shareReview('r5')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Google</span></div>
+    </article>
+    <article class="rev post" data-post="r6">
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop" alt="Lucas P."><div><strong>Lucas P.</strong><small data-en="Brazil · 2 months ago" data-es="Brasil · hace 2 meses">Brazil · 2 months ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"Aprendí más español en un mes aquí que en un año de clases online."</p>
+      <div class="post-tags"><span>A2→B1</span><span>4 weeks</span><span>Terrace</span></div>
+      <div class="post-foot"><button class="like" data-like="r6">♥ <b>12</b></button><button class="shareb" onclick="shareReview('r6')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Instagram</span></div>
+    </article>
+    <article class="rev post" data-post="r7">
+      <div class="post-head"><img class="avatar-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&auto=format&fit=crop" alt="Emma W."><div><strong>Emma W.</strong><small data-en="USA · 3 months ago" data-es="EE.UU. · hace 3 meses">USA · 3 months ago</small></div><span class="verified" data-en="✓ Verified stay" data-es="✓ Estancia verificada">✓ Verified stay</span></div>
+      <div class="waves-emoji">🌊🌊🌊🌊🌊</div>
+      <p class="pq">"Friday dinners are the best classroom. I left with friends from six countries."</p>
+      <div class="post-tags"><span>B2</span><span>6 weeks</span><span>Dinners</span></div>
+      <div class="post-foot"><button class="like" data-like="r7">♥ <b>19</b></button><button class="shareb" onclick="shareReview('r7')"><span data-en="Share" data-es="Compartir">Share</span> ↗</button><span class="via">via Google</span></div>
+    </article>
+  </div></div>
   <div class="ig-head">
     <span class="ig-ava"><b>H</b></span>
     <div><strong>huaraspanishschool</strong><small data-en="Pichilemu, Chile · Language school" data-es="Pichilemu, Chile · Escuela de idiomas">Pichilemu, Chile · Language school</small></div>
@@ -468,6 +538,17 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
     <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80&auto=format&fit=crop" alt="Surf"><span>♥ 243</span></a>
     <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80&auto=format&fit=crop" alt="Empanadas"><span>♥ 197</span></a>
     <a class="ig-item" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80&auto=format&fit=crop" alt="Sunset"><span>♥ 229</span></a>
+  </div>
+  <div class="ig-head">
+    <span class="ig-ava" style="background:linear-gradient(45deg,#1c6e8c,#0e4457)"><b>f</b></span>
+    <div><strong>huaraspanishschool</strong><small data-en="Pichilemu, Chile · Follow us on Facebook" data-es="Pichilemu, Chile · Síguenos en Facebook">Pichilemu, Chile · Follow us on Facebook</small></div>
+    <a class="btn-pill btn-dark ig-follow" style="padding:11px 22px" href="https://www.facebook.com/huaraspanishschool/?locale=es_LA" target="_blank" rel="noopener"><span data-en="Follow" data-es="Seguir">Follow</span></a>
+  </div>
+  <div class="fb-row">
+    <div class="fb-post"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%3Ffbid%3D1507288571409898%26set%3Da.460912359380863%26locale%3Des_LA&show_text=true&width=340" width="340" height="560" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Huara en Facebook 1"></iframe></div>
+    <div class="fb-post"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%3Ffbid%3D1480846414054114%26set%3Dpcb.1480846454054110%26locale%3Des_LA&show_text=true&width=340" width="340" height="560" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Huara en Facebook 2"></iframe></div>
+    <div class="fb-post"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%3Ffbid%3D1455926969879392%26set%3Da.460912359380863%26locale%3Des_LA&show_text=true&width=340" width="340" height="560" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Huara en Facebook 3"></iframe></div>
+    <div class="fb-post"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%3Ffbid%3D1439158741556215%26set%3Da.460912359380863%26locale%3Des_LA&show_text=true&width=340" width="340" height="560" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Huara en Facebook 4"></iframe></div>
   </div>
 </div>
 
@@ -483,14 +564,29 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 <div class="big-marquee"><div><span>SURF °</span><span class="o">ESPAÑOL °</span><span>PUNTA DE LOBOS °</span><span class="o">EMPANADAS °</span><span>SALSA °</span><span class="o">PICHILEMU °</span><span>SURF °</span><span class="o">ESPAÑOL °</span><span>PUNTA DE LOBOS °</span><span class="o">EMPANADAS °</span><span>SALSA °</span><span class="o">PICHILEMU °</span></div></div>
 
 <footer>
+  <video class="foot-video" autoplay muted loop playsinline preload="auto"><source src="1.mp4" type="video/mp4"></video>
   <div class="container foot-grid">
-    <div><h4 style="font-family:'Archivo'">HUARA°</h4><p style="font-size:13px;opacity:.7">Affordable immersion: language + surf + nature + Chilean food.</p></div>
-    <div><h4>Shop</h4><a href="#shop" style="display:block;font-size:13px;opacity:.7;padding:3px 0">All programs</a><a href="#surf" style="display:block;font-size:13px;opacity:.7">Spanish + Surf</a><a href="#addons" style="display:block;font-size:13px;opacity:.7">Experiences</a></div>
-    <div><h4>Help</h4><a href="#faq" style="display:block;font-size:13px;opacity:.7">FAQ</a><a href="#" style="display:block;font-size:13px;opacity:.7">Contact</a><a href="#" style="display:block;font-size:13px;opacity:.7">@huara.spanish</a></div>
-    <div><h4>Newsletter — 10% off online</h4><div class="news"><input placeholder="email"><button>→</button></div></div>
+    <div><h4 style="font-family:'Archivo';font-size:22px">HUARA<span style="color:var(--accent)">°</span></h4>
+    <p style="font-size:13px;opacity:.7" data-en="Affordable immersion: language + surf + nature + Chilean food." data-es="Inmersión accesible: idioma + surf + naturaleza + comida chilena.">Affordable immersion: language + surf + nature + Chilean food.</p>
+    <div style="margin-top:12px">
+      <div class="contact-line"><i class="fa-solid fa-location-dot"></i><span>Casa de Katta · Pichilemu, Chile</span></div>
+      <div class="contact-line"><i class="fa-solid fa-clock"></i><span data-en="Mon–Fri 10:00–13:00" data-es="Lun–vie 10:00–13:00">Mon–Fri 10:00–13:00</span></div>
+      <div class="contact-line"><i class="fa-solid fa-envelope"></i><a href="mailto:hola@huara.cl">hola@huara.cl</a></div>
+      <div class="contact-line"><i class="fa-solid fa-phone"></i><a href="https://wa.me/56933734134" target="_blank" rel="noopener">+56 9 3373 4134</a></div>
+    </div>
+    <div class="social-row">
+      <a class="soc" href="https://www.instagram.com/huaraspanishschool/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></a>
+      <a class="soc" href="https://www.facebook.com/huaraspanishschool/?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="#fff"><path d="M14 8.5V7c0-.8.2-1.5 1.5-1.5H17V2.5h-2.5C11.7 2.5 11 4.3 11 7v1.5H9V12h2v9.5h3V12h2.3l.7-3.5H14z"/></svg></a>
+      <a class="soc" href="https://wa.me/56933734134" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+    </div>
+    </div>
+    <div><h4 data-en="School" data-es="Escuela">School</h4><a href="#shop" style="display:block;font-size:13px;opacity:.7;padding:3px 0">All programs</a><a href="#surf" style="display:block;font-size:13px;opacity:.7;padding:3px 0">Spanish + Surf</a><a href="#metodo" style="display:block;font-size:13px;opacity:.7;padding:3px 0">Method</a><a href="#casa" style="display:block;font-size:13px;opacity:.7;padding:3px 0">Community</a></div>
+    <div><h4 data-en="Help" data-es="Ayuda">Help</h4><a href="#faq" style="display:block;font-size:13px;opacity:.7;padding:3px 0">FAQ</a><a href="#booking" style="display:block;font-size:13px;opacity:.7;padding:3px 0">Book now</a><a href="https://wa.me/56933734134" target="_blank" rel="noopener" style="display:block;font-size:13px;opacity:.7;padding:3px 0">Contact</a></div>
+    <div><h4 data-en="Newsletter — 10% off online" data-es="Newsletter — 10% dcto online">Newsletter — 10% off online</h4><p style="font-size:12px;opacity:.65" data-en="School news + seasonal discounts." data-es="Noticias + descuentos de temporada.">School news + seasonal discounts.</p><div class="news"><input id="nlEmail" placeholder="email"><button onclick="subscribeNews()">→</button></div></div>
   </div>
+  <div class="container pay-strip"><span>🔒 <span data-en="Secure payment" data-es="Pago seguro">Secure payment</span></span><span>Flow</span><span>MercadoPago</span></div>
   <div class="giant" aria-label="HUARA°"><span>H</span><span>U</span><span>A</span><span>R</span><span>A</span><span class="deg">°</span></div>
-  <p style="text-align:center;font-size:11px;opacity:.5;padding:0 16px">© 2026 Huara Spanish School · Analog-inspired mockup · EN/ES · HTML+CSS+JS vanilla</p>
+  <p style="text-align:center;font-size:11px;opacity:.5;padding:0 16px">© <span id="year">2026</span> Huara Spanish School</p>
 </footer>
 
 <!-- CART DRAWER -->
@@ -505,7 +601,8 @@ footer{background:#111;color:#fff;border-radius:18px 18px 0 0;padding:50px 0 20p
 <!-- QUICK VIEW -->
 <div class="qv" id="qv"><div class="qv-card"><img id="qvImg" src=""><div class="qv-info"><button class="icon-btn" onclick="closeQV()">✕</button><p id="qvTag" style="font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--accent)"></p><h2 id="qvTitle" style="font-size:clamp(26px,5vw,36px);margin:8px 0"></h2><p id="qvDesc" style="font-size:14px;color:var(--muted)"></p><p id="qvPrice" style="font-family:Archivo;font-weight:800;font-size:24px;margin:14px 0"></p><button class="btn-pill btn-dark" id="qvAdd" style="width:100%;justify-content:center">Add to Order →</button></div></div></div>
 
-<a class="wa-float" id="waFloat" href="https://wa.me/56937479835?text=Hi%20Huara!%20I%20want%20info%20about%20Spanish%20programs%20in%20Pichilemu." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Subir">↑</button>
+<a class="wa-float" id="waFloat" href="https://wa.me/56933734134?text=Hi%20Huara!%20I%20want%20info%20about%20Spanish%20programs%20in%20Pichilemu." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <div class="omodal" id="orderModal"><div class="omodal-card">
   <div class="ocheck">✓</div>
   <h2 id="omTitle" style="text-align:center;font-size:30px;margin-bottom:6px"></h2>
@@ -535,7 +632,7 @@ const PRODUCTS={
  'dinner':{cat:'surf',tag:'Extra',title:{en:'Friday Dinner',es:'Cena Viernes'},desc:{en:'Family night.',es:'Noche familiar.'},price:25,img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=60&auto=format&fit=crop'},
  'surf-extra':{cat:'surf',tag:'Extra',title:{en:'Extra Surf Lesson',es:'Clase Extra Surf'},desc:{en:'Punta de Lobos.',es:'Punta de Lobos.'},price:35,img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=200&q=60&auto=format&fit=crop'}
 };
-function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='en');});['btnES','btnESm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='es');});document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[l]);const wa=document.getElementById('waFloat');if(wa)wa.href='https://wa.me/56937479835?text='+encodeURIComponent(l==='es'?'¡Hola Huara! Quiero info sobre los programas de español en Pichilemu.':'Hi Huara! I want info about Spanish programs in Pichilemu.');renderGrid();renderAddons();renderCart();}
+function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='en');});['btnES','btnESm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='es');});document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[l]);const wa=document.getElementById('waFloat');if(wa)wa.href='https://wa.me/56933734134?text='+encodeURIComponent(l==='es'?'¡Hola Huara! Quiero info sobre los programas de español en Pichilemu.':'Hi Huara! I want info about Spanish programs in Pichilemu.');renderGrid();renderAddons();renderCart();}
 function setFilter(f,btn){FILTER=f;document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGrid();}
 function renderGrid(){
  const ids=['pres-intensivo','surf-pack','online-bas12','int-conv','adv-master','online-int24','online-adv36'].filter(id=>FILTER==='all'||PRODUCTS[id].cat===FILTER);
@@ -584,7 +681,7 @@ function checkout(){
  else{const pr=document.getElementById('fProg');extra+=' · '+pr.options[pr.selectedIndex].text+' · '+document.getElementById('fTZ').value;}
  const lines=Object.keys(cart).map(id=>'- '+cart[id]+'x '+PRODUCTS[id].title[LANG]+' ($'+(PRODUCTS[id].price*cart[id])+')');
  const msg=(es?'Hola Huara Spanish School, quiero reservar:':'Hi Huara Spanish School, I want to book:')+'\n'+lines.join('\n')+'\n'+'Total: $'+totals()+' USD\n— '+name+' ('+email+')\n'+(es?'Inicio: ':'Start: ')+date+' · '+extra+(notes?'\n'+(es?'Notas: ':'Notes: ')+notes:'');
- lastOrderURL='https://wa.me/56937479835?text='+encodeURIComponent(msg);
+ lastOrderURL='https://wa.me/56933734134?text='+encodeURIComponent(msg);
  window.open(lastOrderURL,'_blank','noopener');
  document.getElementById('omTitle').textContent=es?'¡Pedido listo!':'Order ready!';
  document.getElementById('omRecap').innerHTML=lines.map(l=>'<div>'+esc(l)+'</div>').join('')+'<div style="margin-top:8px;font-weight:800">Total: $'+totals()+' USD — '+esc(name)+'</div>';
@@ -599,13 +696,14 @@ function checkout(){
 }
 function closeOrderModal(){document.getElementById('orderModal').classList.remove('show');}
 function emptyBag(){cart={};renderCart();closeOrderModal();}
-const LIKE_BASE={r1:24,r2:18,r3:31};
+const LIKE_BASE={r1:24,r2:18,r3:31,r4:15,r5:27,r6:12,r7:19};
 function getLikes(){try{return JSON.parse(localStorage.getItem('huara_likes')||'{}')}catch(e){return{}}}
 function initLikes(){const mine=getLikes();document.querySelectorAll('[data-like]').forEach(b=>{const id=b.getAttribute('data-like');const on=!!mine[id];b.classList.toggle('on',on);b.querySelector('b').textContent=LIKE_BASE[id]+(on?1:0);b.onclick=()=>{const m=getLikes();if(m[id])delete m[id];else m[id]=1;try{localStorage.setItem('huara_likes',JSON.stringify(m))}catch(e){}initLikes();};});}
 function shareReview(id){const card=document.querySelector('[data-post="'+id+'"]');const q=card?card.querySelector('.pq').textContent:'';const a=card?card.querySelector('.post-head strong').textContent:'';window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Mira esta reseña de Huara Spanish School: ':'Check this Huara Spanish School review: ')+q+' — '+a), '_blank','noopener');}
 function shareSite(){window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Te recomiendo Huara Spanish School en Pichilemu, Chile: ':'I recommend Huara Spanish School in Pichilemu, Chile: ')+location.href),'_blank','noopener');}
+function subscribeNews(){const i=document.getElementById('nlEmail');const v=(i.value||'').trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){toast(LANG==='en'?'Please enter a valid email':'Ingresa un email válido');i.focus();return;}i.value='';toast(LANG==='en'?'Thanks! Check your inbox':'¡Gracias! Revisa tu correo');}
 let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2300);}
-window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('solid',scrollY>window.innerHeight*.55));
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('solid',scrollY>window.innerHeight*.55);document.getElementById('topBtn').classList.toggle('show',scrollY>600);});
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* La escuela edita aquí: días para el inicio (d) y cupos libres (s) por programa */
@@ -634,7 +732,9 @@ function tick(){const n=new Date();const d=new Date(n);d.setDate(n.getDate()+((8
 setInterval(tick,1000);tick();
 // duplicate strip for seamless loop
 const st=document.getElementById('stripTrack');if(st)st.innerHTML+=st.innerHTML;
+const ft=document.getElementById('feedTrack');if(ft)ft.innerHTML+=ft.innerHTML;
 renderGrid();renderAddons();renderCart();initLikes();
+document.getElementById('year').textContent=new Date().getFullYear();
 document.getElementById('fDate').valueAsDate=new Date(Date.now()+7*864e5);
 </script>
 </body>
