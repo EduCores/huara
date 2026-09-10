@@ -109,7 +109,7 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .quick{position:absolute;bottom:12px;right:12px;width:44px;height:44px;border-radius:5px;background:#fff;border:0;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .quick:hover{background:var(--accent);color:#fff}
 .pcard .pb{padding:14px 14px 16px;min-width:0}
-.pcard .pb small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.pcard .pb small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#ff4d00;font-weight:600}
 .pcard h3{font-size:19px;letter-spacing:-.02em;margin:6px 0;line-height:1.1}
 .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px}
 .price{font-weight:700;white-space:nowrap}
@@ -319,10 +319,15 @@ footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .top-btn{position:fixed;right:20px;bottom:84px;z-index:150;width:56px;height:56px;border-radius:5px;background:#111;color:#fff;border:0;display:grid;place-items:center;font-size:22px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:.3s;opacity:0;pointer-events:none;transform:translateY(10px)}
 .top-btn.show{opacity:1;pointer-events:auto;transform:none}
 .top-btn:hover{background:var(--accent)}
-.wa-float{position:fixed;right:20px;bottom:20px;z-index:150;width:56px;height:56px;border-radius:5px;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.45);transition:transform .25s;animation:waIn .6s ease .8s backwards}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:150;width:56px;height:56px;border-radius:5px;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.45);transition:transform .25s,bottom .3s ease;animation:waIn .6s ease .8s backwards}
 .wa-float:hover{transform:translateY(-3px) scale(1.04)}
 .wa-float svg{width:30px;height:30px;fill:#fff}
 .wa-float::before{content:"";position:absolute;inset:-4px;border-radius:9px;border:2px solid rgba(37,211,102,.5);animation:waPing 2.4s ease-out infinite;pointer-events:none}
+@media(max-width:560px){
+  .top-btn,.wa-float{transition:bottom .3s ease,transform .25s,opacity .3s}
+  .top-btn.lifted{bottom:684px}
+  .wa-float.lifted{bottom:616px}
+}
 @keyframes waPing{0%{transform:scale(.85);opacity:1}70%,100%{transform:scale(1.15);opacity:0}}
 @keyframes waIn{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
 @media(prefers-reduced-motion:reduce){.wa-float,.wa-float::before{animation:none}}
@@ -342,6 +347,7 @@ footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 @media(max-width:1000px){.grid4{grid-template-columns:1fr 1fr}.edit,.split2,.qv-card,.foot-grid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.hero-top-img{height:30vh}.checkout{position:static}.hide-m{display:none}.split2{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:560px){.container{padding:0 10px}.reveal.visible{padding:60px 10px 0}.grid4{grid-template-columns:1fr;gap:14px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:82px;padding:0 14px;gap:10px}.hleft{gap:8px}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:static;transform:none;justify-self:start;font-size:34px}.bag-btn{padding:12px 18px;font-size:14px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 10px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 10px}.checkout{padding:20px 16px}.addons{padding:16px}.foot-video{object-position:0 100%}.foot-grid h4{font-size:20px}.foot-grid p{font-size:16px !important}.foot-grid a{font-size:20px !important}.contact-line{font-size:17px}.foot-grid .news input{font-size:16px}.pay-strip span{font-size:12px}}
 @media(max-width:380px){.grid4{grid-template-columns:1fr}.hero h1{font-size:40px}.addon-row{flex-wrap:wrap}.addon-row button{margin-left:0;width:100%}}
+@media(min-width:1000px){.foot-grid a{font-size:20px !important}}
 /* ESCALA GLOBAL DE TEXTOS */
 .links a{font-size:15px}
 .btn-pill{font-size:15px}
@@ -380,6 +386,24 @@ footer h4{font-size:17px}
 .m-item p{font-size:14px}
 .m-item strong{font-size:17px}
 .citem small,.post-head small,.score small{font-size:13px}
+/* MINI-ADMIN (?admin=1) */
+.adm-back{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:248;opacity:0;pointer-events:none;transition:.3s}
+.adm-back.show{opacity:1;pointer-events:auto}
+.adm{position:fixed;top:0;right:0;width:400px;max-width:94vw;height:100vh;height:100dvh;background:var(--bg);z-index:249;transform:translateX(105%);transition:transform .35s cubic-bezier(.2,.9,.25,1);display:flex;flex-direction:column;color:var(--ink);border-left:1px solid var(--line)}
+.adm.open{transform:none}
+.adm-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:'Archivo';font-weight:800;font-size:18px}
+.adm-body{flex:1;overflow:auto;padding:14px 18px;display:flex;flex-direction:column;gap:14px}
+.adm-sec{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.adm-sec h4{font-family:'Archivo';font-size:14px;margin-bottom:8px}
+.adm-sec p.hint{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.adm-row{display:grid;grid-template-columns:minmax(0,1fr) 70px 56px 56px;gap:8px;align-items:center;padding:7px 0;border-top:1px dashed var(--line);font-size:13px}
+.adm-row.head{border:0;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding-bottom:2px}
+.adm-row input{width:100%;border:1px solid var(--line);border-radius:7px;padding:7px 6px;font:600 13px 'Inter';background:var(--bg);color:var(--ink)}
+.adm-foot{border-top:1px solid var(--line);padding:12px 18px;background:#fff;display:flex;flex-wrap:wrap;gap:8px}
+.adm-btn{border:1px solid #111;border-radius:8px;padding:10px 14px;font:700 13px 'Inter';cursor:pointer;background:#111;color:#fff;flex:1;min-width:140px}
+.adm-btn.ghost{background:transparent;color:#111}
+.adm-btn.green{background:#1d7a3a;border-color:#1d7a3a}
+.adm-exp{width:100%;min-height:110px;border:1px solid var(--line);border-radius:8px;padding:8px;font:400 11px monospace;background:#111;color:#c8f5c8}
 </style>
 </head>
 <body>
@@ -426,7 +450,7 @@ footer h4{font-size:17px}
 <div class="hero">
   <div class="hero-bg"><img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1600&q=80&auto=format&fit=crop" alt="Surf"></div>
   <div class="hero-content">
-    <div class="eyebrow"><i></i><span data-en="Spanish immersion · Pichilemu, Chile" data-es="Inmersión de español · Pichilemu, Chile">Spanish immersion · Pichilemu, Chile</span></div>
+    <div class="eyebrow"><i></i><span data-en="Pichilemu - Chile 🇨🇱" data-es="Pichilemu - Chile 🇨🇱">Pichilemu - Chile 🇨🇱</span></div>
     <h1><span data-en="Spanish School for" data-es="Español hecho para">Spanish School for</span> <u data-en="Movement" data-es="moverse">Movement</u></h1>
     <p class="sub" data-en="Three lines for the classroom, the wave, and what comes after. Small groups (max 4) in a homey house with terrace, kitchen & garden — plus surf, salsa and empanadas." data-es="Tres líneas para el aula, la ola y lo que viene después. Grupos pequeños (máx. 4) en casa acogedora con terraza, cocina y jardín — más surf, salsa y empanadas.">Three lines for the classroom, the wave, and what comes after. Small groups (max 4) in a homey house with terrace, kitchen & garden — plus surf, salsa and empanadas.</p>
     <div class="hero-ctas">
@@ -690,6 +714,46 @@ footer h4{font-size:17px}
 </div></div>
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeLB()"><button class="lbox-x" onclick="closeLB()">✕</button><button class="lbox-nav prev" onclick="lbNav(-1)">‹</button><img id="lbImg" src="" alt="Vista ampliada"><button class="lbox-nav next" onclick="lbNav(1)">›</button><div class="lbox-count" id="lbCount"></div></div>
 <div class="toast" id="toast"></div>
+<div class="adm-back" id="admBack" onclick="toggleAdmin(false)"></div>
+<aside class="adm" id="admPanel" aria-label="HUARA Admin">
+  <div class="adm-head"><span>⚙️ HUARA Admin</span><button class="icon-btn" onclick="toggleAdmin(false)">✕</button></div>
+  <div class="adm-body">
+    <div class="adm-sec">
+      <h4>⏳ Reloj Surf (hero)</h4>
+      <p class="hint">Fecha objetivo del countdown grande. Vacío = próximo lunes 09:00 automático.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><input id="admSurf" type="datetime-local" style="flex:1;min-width:180px;border:1px solid var(--line);border-radius:7px;padding:9px;font:600 13px Inter"><button class="adm-btn ghost" style="flex:0;min-width:110px" onclick="admNextMonday()">Próx. lunes</button></div>
+    </div>
+    <div class="adm-sec">
+      <h4>📚 Programas: precio · días · cupos</h4>
+      <p class="hint">Días = cuenta regresiva de cada tarjeta. Cupos = etiqueta (≤3 avisa, ≤1 último). Guardar recalcula los relojes.</p>
+      <div class="adm-row head"><span>Programa</span><span>$ USD</span><span>Días</span><span>Cupos</span></div>
+      <div id="admRows"></div>
+    </div>
+    <div class="adm-sec">
+      <h4>➕ Extras: precios</h4>
+      <div id="admExtras"></div>
+    </div>
+    <div class="adm-sec">
+      <h4>📤 Exportar para todos los visitantes</h4>
+      <p class="hint">El admin guarda en tu navegador. Para publicarlo, pulsa Exportar, cópialo y pégalo en el archivo (te digo dónde).</p>
+      <textarea class="adm-exp" id="admExp" readonly placeholder="Pulsa Exportar para generar el código…"></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="adm-btn ghost" onclick="admExport(false)">Exportar</button><button class="adm-btn ghost" onclick="admExport(true)">Copiar</button></div>
+    </div>
+    <div class="adm-sec">
+      <h4>✏️ Pegar código sin abrir el index</h4>
+      <p class="hint">Este es el “pedacito del index”. Pega aquí el JSON del Exportar y pulsa Aplicar. No abres el archivo.</p>
+      <textarea class="adm-exp" id="admPaste" placeholder='Pega aquí el JSON exportado… {"prices":{…},"starts":{…},"surfTarget":…}'></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="adm-btn ghost" onclick="admShowSnippet()">Ver actual</button><button class="adm-btn green" onclick="admApplyPaste()">Aplicar pegado ✓</button></div>
+      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="adm-btn ghost" onclick="admDownloadIndex()">Descargar index.html listo ⬇</button></div>
+      <p class="hint" style="margin-top:8px">Descargar te baja el index ya modificado: súbelo a GitHub web (Add file → Upload) sin tocar código.</p>
+    </div>
+  </div>
+  <div class="adm-foot">
+    <button class="adm-btn green" onclick="admSave()">Guardar ✓</button>
+    <button class="adm-btn ghost" onclick="admResetClocks()">Reset relojes ⟳</button>
+    <button class="adm-btn ghost" onclick="admClear()">Borrar todo</button>
+  </div>
+</aside>
 
 <script>
 let LANG='en', FILTER='all', cart={};
@@ -787,8 +851,9 @@ function shareReview(id){const card=document.querySelector('[data-post="'+id+'"]
 function shareSite(){window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Te recomiendo Huara Spanish School en Pichilemu, Chile: ':'I recommend Huara Spanish School in Pichilemu, Chile: ')+location.href),'_blank','noopener');}
 function subscribeNews(){const i=document.getElementById('nlEmail');const v=(i.value||'').trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){toast(LANG==='en'?'Please enter a valid email':'Ingresa un email válido');i.focus();return;}i.value='';toast(LANG==='en'?'Thanks! Check your inbox':'¡Gracias! Revisa tu correo');}
 let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2300);}
-window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('solid',scrollY>window.innerHeight*.55);document.getElementById('topBtn').classList.toggle('show',scrollY>600);});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleSearch(false);toggleCart(false);toggleMenu(false);closeQV();closeOrderModal();closeLB();}});
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('solid',scrollY>window.innerHeight*.55);document.getElementById('topBtn').classList.toggle('show',scrollY>600);const nearBottom=(window.innerHeight+window.scrollY)>=(document.documentElement.scrollHeight-140);document.getElementById('topBtn').classList.toggle('lifted',nearBottom);document.getElementById('waFloat').classList.toggle('lifted',nearBottom);},{passive:true});
+window.addEventListener('resize',()=>window.dispatchEvent(new Event('scroll')),{passive:true});window.dispatchEvent(new Event('scroll'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleSearch(false);toggleCart(false);toggleMenu(false);closeQV();closeOrderModal();closeLB();toggleAdmin(false);}});
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* La escuela edita aquí: días para el inicio (d) y cupos libres (s) por programa */
@@ -801,7 +866,83 @@ const STARTS={
  'online-int24':{d:2,s:6},
  'online-adv36':{d:2,s:6}
 };
-const START_AT={};Object.keys(STARTS).forEach(id=>START_AT[id]=Date.now()+STARTS[id].d*864e5);
+const START_AT={};
+/* ===== MINI-ADMIN (?admin=1) ===== */
+const ADMIN_KEY='huara_admin_v1';
+const DEFAULT_PRICES={};Object.keys(PRODUCTS).forEach(id=>DEFAULT_PRICES[id]=PRODUCTS[id].price);
+const DEFAULT_STARTS=JSON.parse(JSON.stringify(STARTS));
+let ADMIN={prices:{},starts:{},surfTarget:null};
+function loadAdmin(){try{const a=JSON.parse(localStorage.getItem(ADMIN_KEY)||'{}');if(a&&typeof a==='object'){if(a.prices&&typeof a.prices==='object')ADMIN.prices=a.prices;if(a.starts&&typeof a.starts==='object')ADMIN.starts=a.starts;if(a.surfTarget)ADMIN.surfTarget=+a.surfTarget||null;}}catch(e){}}
+function applyAdmin(){Object.keys(ADMIN.prices||{}).forEach(id=>{if(PRODUCTS[id]&&isFinite(+ADMIN.prices[id]))PRODUCTS[id].price=Math.max(0,Math.round(+ADMIN.prices[id]));});Object.keys(ADMIN.starts||{}).forEach(id=>{if(STARTS[id]){const v=ADMIN.starts[id];if(isFinite(+v.d))STARTS[id].d=Math.max(0,+v.d);if(isFinite(+v.s))STARTS[id].s=Math.max(0,Math.round(+v.s));}});}
+function resetStartClocks(){Object.keys(STARTS).forEach(id=>START_AT[id]=Date.now()+(+STARTS[id].d||0)*864e5);}
+function nextMonday9(){const n=new Date();const d=new Date(n);d.setDate(n.getDate()+((8-n.getDay())%7||7));d.setHours(9,0,0,0);return d;}
+function getSurfTarget(){if(ADMIN.surfTarget&&ADMIN.surfTarget>Date.now())return new Date(ADMIN.surfTarget);return nextMonday9();}
+loadAdmin();applyAdmin();resetStartClocks();
+const ADM_MAIN=['pres-intensivo','surf-pack','online-bas12','int-conv','adv-master','online-int24','online-adv36'];
+const ADM_EXTRAS=['salsa','empanada','tour','dinner','surf-extra'];
+function admLocalInput(ts){const d=new Date(ts);const p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());}
+function toggleAdmin(o){const p=document.getElementById('admPanel'),b=document.getElementById('admBack');const show=(typeof o==='boolean')?o:!p.classList.contains('open');p.classList.toggle('open',show);b.classList.toggle('show',show);}
+window.openAdmin=()=>{buildAdmin();toggleAdmin(true);};
+function buildAdmin(){
+ const rows=document.getElementById('admRows');if(!rows)return;
+ rows.innerHTML=ADM_MAIN.map(id=>{const p=PRODUCTS[id],s=STARTS[id]||{d:0,s:0};return `<div class="adm-row"><span title="${id}">${p?p.title.en:id}</span><input type="number" min="0" step="1" id="adm-price-${id}" value="${p?p.price:0}"><input type="number" min="0" step="0.5" id="adm-d-${id}" value="${s.d}"><input type="number" min="0" step="1" id="adm-s-${id}" value="${s.s}"></div>`;}).join('');
+ document.getElementById('admExtras').innerHTML=ADM_EXTRAS.map(id=>{const p=PRODUCTS[id];return `<div class="adm-row" style="grid-template-columns:minmax(0,1fr) 70px"><span title="${id}">${p?p.title.en:id}</span><input type="number" min="0" step="1" id="adm-price-${id}" value="${p?p.price:0}"></div>`;}).join('');
+ const si=document.getElementById('admSurf');if(si)si.value=ADMIN.surfTarget?admLocalInput(ADMIN.surfTarget):'';
+}
+function admCollect(){
+ const prices={},starts={};
+ [...ADM_MAIN,...ADM_EXTRAS].forEach(id=>{const el=document.getElementById('adm-price-'+id);if(el&&isFinite(+el.value))prices[id]=Math.max(0,Math.round(+el.value));});
+ ADM_MAIN.forEach(id=>{const de=document.getElementById('adm-d-'+id),se=document.getElementById('adm-s-'+id);starts[id]={d:de?Math.max(0,+de.value||0):0,s:se?Math.max(0,Math.round(+se.value||0)):0};});
+ const sv=document.getElementById('admSurf').value;const ts=sv?new Date(sv).getTime():null;
+ return {prices,starts,surfTarget:(ts&&isFinite(ts))?ts:null};
+}
+function admSave(){const v=admCollect();ADMIN=v;try{localStorage.setItem(ADMIN_KEY,JSON.stringify(v));}catch(e){}applyAdmin();resetStartClocks();renderGrid();renderAddons();renderCart();tick();toast(LANG==='es'?'Admin guardado ✓ Relojes reseteados':'Admin saved ✓ Clocks reset');}
+function admResetClocks(){resetStartClocks();renderGrid();tick();toast(LANG==='es'?'Relojes reseteados ⟳':'Clocks reset ⟳');}
+function admNextMonday(){const el=document.getElementById('admSurf');if(el)el.value=admLocalInput(nextMonday9().getTime());}
+function admClear(){try{localStorage.removeItem(ADMIN_KEY);}catch(e){}location.reload();}
+function admExport(copy){
+ const v=admCollect();
+ const js=`// HUARA Admin export — pega en index.html\n// 1) Reemplaza el bloque const STARTS={...} por:\nconst STARTS=${JSON.stringify(v.starts,null,1)};\n// 2) Precios (reemplaza los price en PRODUCTS o aplica al inicio):\n${Object.keys(v.prices).map(id=>`PRODUCTS['${id}'].price=${v.prices[id]};`).join('\n')}\n// 3) Reloj surf: ${v.surfTarget?new Date(v.surfTarget).toString():'auto (próximo lunes 09:00)'}\n// surfTarget=${v.surfTarget||'null'}\n// JSON:\n${JSON.stringify(v)}`;
+ const ta=document.getElementById('admExp');if(ta)ta.value=js;
+ const tp=document.getElementById('admPaste');if(tp&&!tp.value)tp.value=JSON.stringify(v);
+ if(copy&&navigator.clipboard){navigator.clipboard.writeText(js).then(()=>toast('Copiado ✓')).catch(()=>toast('Exportado — copia manual'));}
+ else toast('Export listo — cópialo');
+}
+function admShowSnippet(){const v=admCollect();const tp=document.getElementById('admPaste');if(tp){tp.value=JSON.stringify(v);tp.focus();}toast('Pedacito actual listo');}
+function admParsePaste(raw){
+ raw=(raw||'').trim();if(!raw)throw new Error('empty');
+ const m=raw.match(/\{[\s\S]*"prices"[\s\S]*\}/);
+ const cand=m?m[0]:raw;
+ const v=JSON.parse(cand);
+ if(!v||typeof v!=='object'||!v.prices||!v.starts)throw new Error('bad');
+ return v;
+}
+function admApplyPaste(){
+ try{
+  const tp=document.getElementById('admPaste');const v=admParsePaste(tp.value);
+  ADMIN={prices:v.prices||{},starts:v.starts||{},surfTarget:v.surfTarget||null};
+  try{localStorage.setItem(ADMIN_KEY,JSON.stringify(ADMIN));}catch(e){}
+  applyAdmin();resetStartClocks();buildAdmin();
+  const si=document.getElementById('admSurf');if(si)si.value=ADMIN.surfTarget?admLocalInput(ADMIN.surfTarget):'';
+  const tp2=document.getElementById('admPaste');if(tp2)tp2.value=JSON.stringify(ADMIN);
+  renderGrid();renderAddons();renderCart();tick();toast('Pegado aplicado ✓');
+ }catch(e){toast('JSON inválido — usa el Exportar');}
+}
+async function admDownloadIndex(){
+ try{
+  const v=admCollect();
+  let html='';try{html=await (await fetch(location.href,{cache:'no-store'})).text();}catch(e){}
+  if(!html||html.length<1000){html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;}
+  const startsStr='const STARTS='+JSON.stringify(v.starts,null,1)+';';
+  if(/const STARTS=\{\s*'pres-intensivo'[\s\S]*?\n\};/.test(html))html=html.replace(/const STARTS=\{\s*'pres-intensivo'[\s\S]*?\n\};/,startsStr);
+  const inject=Object.keys(v.prices).map(id=>`PRODUCTS['${id}'].price=${v.prices[id]};`).join('\n');
+  if(html.indexOf('function setLang')>=0&&html.indexOf(inject.split('\n')[0])<0)html=html.replace('function setLang',inject+'\nfunction setLang');
+  if(v.surfTarget)html=html.replace('loadAdmin();applyAdmin();resetStartClocks();','loadAdmin();applyAdmin();if(!ADMIN.surfTarget)ADMIN.surfTarget='+v.surfTarget+';resetStartClocks();');
+  const blob=new Blob([html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';document.body.appendChild(a);a.click();setTimeout(()=>{try{URL.revokeObjectURL(a.href);}catch(e){}a.remove();},800);
+  toast('Descargado — súbelo a GitHub');
+ }catch(e){toast('No se pudo descargar');}
+}
+if(new URLSearchParams(location.search).has('admin')){buildAdmin();toggleAdmin(true);}
 function fmtLeft(ms){if(ms<0)ms=0;const t=Math.floor(ms/1e3),d=Math.floor(t/86400),h=String(Math.floor(t%86400/3600)).padStart(2,'0'),m=String(Math.floor(t%3600/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');return (d>0?d+'d ':'')+h+':'+m+':'+s;}
 function tickStarts(){document.querySelectorAll('[data-cd]').forEach(el=>{const id=el.getAttribute('data-cd');if(START_AT[id])el.textContent=fmtLeft(START_AT[id]-Date.now());});}
 function startHTML(id){
@@ -812,8 +953,8 @@ function startHTML(id){
  else{txt=s.s+(LANG==='en'?' spots':' cupos');}
  return `<div class="nextart ${cls}"><i></i><b>${txt}</b><span data-cd="${id}">…</span></div>`;
 }
-// countdown to next Monday
-function tick(){const n=new Date();const d=new Date(n);d.setDate(n.getDate()+((8-n.getDay())%7||7));d.setHours(9,0,0,0);let s=Math.max(0,(d-n)/1e3);const dd=Math.floor(s/86400);s%=86400;const hh=Math.floor(s/3600),mm=Math.floor(s%3600/60),ss=Math.floor(s%60);document.getElementById('cdD').textContent=String(dd).padStart(2,'0');document.getElementById('cdH').textContent=String(hh).padStart(2,'0');document.getElementById('cdM').textContent=String(mm).padStart(2,'0');document.getElementById('cdS').textContent=String(ss).padStart(2,'0');tickStarts();}
+// countdown surf (admin override or next Monday)
+function tick(){const n=new Date();const d=getSurfTarget();let s=Math.max(0,(d-n)/1e3);const dd=Math.floor(s/86400);s%=86400;const hh=Math.floor(s/3600),mm=Math.floor(s%3600/60),ss=Math.floor(s%60);document.getElementById('cdD').textContent=String(dd).padStart(2,'0');document.getElementById('cdH').textContent=String(hh).padStart(2,'0');document.getElementById('cdM').textContent=String(mm).padStart(2,'0');document.getElementById('cdS').textContent=String(ss).padStart(2,'0');tickStarts();}
 setInterval(tick,1000);tick();
 // duplicate strip for seamless loop
 const st=document.getElementById('stripTrack');if(st)st.innerHTML+=st.innerHTML;
