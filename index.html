@@ -489,9 +489,7 @@ footer h4{font-size:17px}
   <div class="hero-content">
     <div class="eyebrow"><i></i><span data-en="Pichilemu - Chile 🇨🇱" data-es="Pichilemu - Chile 🇨🇱">Pichilemu - Chile 🇨🇱</span></div>
     <h1><span data-en="Spanish School for" data-es="Español hecho para">Spanish School for</span> <u data-en="Movement" data-es="moverse">Movement</u></h1>
-    <p class="sub" data-en="Three lines for the classroom<br>
-    Small groups max 4<br>house with terrace<br>
-    — plus surf, salsa and empanadas." data-es="Tres líneas para el aula<br>Grupos pequeños máx. 4<br>casa con terraza<br>— más surf, salsa y empanadas.">Three lines for the classroom, the wave, and what comes after. Small groups (max 4) in a homey house with terrace, kitchen & garden — plus surf, salsa and empanadas.</p>
+    <p class="sub" data-en="Three lines for the classroom<br>Small groups max 4<br>house with terrace<br>— plus surf, salsa and empanadas." data-es="Tres líneas para el aula<br>Grupos pequeños máx. 4<br>casa con terraza<br>— más surf, salsa y empanadas.">Three lines for the classroom<br>Small groups max 4<br>house with terrace<br>— plus surf, salsa and empanadas.</p>
     <div class="hero-ctas">
       <button class="btn-pill btn-white" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})"><span data-en="See the programs" data-es="Ver los programas">See the programs</span></button>
       <a class="link-arrow" href="#casa" style="color:#fff"><span data-en="Our story" data-es="Nuestra historia">Our story</span> →</a>
@@ -810,7 +808,7 @@ const PRODUCTS={
  'dinner':{cat:'surf',tag:'Extra',title:{en:'Friday Dinner',es:'Cena Viernes'},desc:{en:'Family night.',es:'Noche familiar.'},price:25,img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=60&auto=format&fit=crop'},
  'surf-extra':{cat:'surf',tag:'Extra',title:{en:'Extra Surf Lesson',es:'Clase Extra Surf'},desc:{en:'Punta de Lobos.',es:'Punta de Lobos.'},price:35,img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=200&q=60&auto=format&fit=crop'}
 };
-function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='en');});['btnES','btnESm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='es');});document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[l]);const wa=document.getElementById('waFloat');if(wa)wa.href='https://wa.me/56933734134?text='+encodeURIComponent(l==='es'?'¡Hola Huara! Quiero info sobre los programas de español en Pichilemu.':'Hi Huara! I want info about Spanish programs in Pichilemu.');renderGrid();renderAddons();renderCart();}
+function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='en');});['btnES','btnESm'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',l==='es');});document.querySelectorAll('[data-en]').forEach(el=>el.innerHTML=el.dataset[l]);const wa=document.getElementById('waFloat');if(wa)wa.href='https://wa.me/56933734134?text='+encodeURIComponent(l==='es'?'¡Hola Huara! Quiero info sobre los programas de español en Pichilemu.':'Hi Huara! I want info about Spanish programs in Pichilemu.');renderGrid();renderAddons();renderCart();}
 function setFilter(f,btn){FILTER=f;document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGrid();}
 function renderGrid(){
  const ids=['pres-intensivo','surf-pack','online-bas12','int-conv','adv-master','online-int24','online-adv36'].filter(id=>FILTER==='all'||PRODUCTS[id].cat===FILTER);
