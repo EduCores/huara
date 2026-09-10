@@ -312,6 +312,14 @@ footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;margin-top:8px}
 .qty button{width:28px;height:28px;border:0;background:transparent;cursor:pointer;font-weight:700}
 .cd-foot{border-top:1px solid var(--line);padding:18px 20px;background:#fff}
+/* CART DRAWER - textos grandes */
+.cart-drawer .cd-head{font-size:24px}
+.cart-drawer .ship{font-size:15px}
+.cart-drawer .citem small{font-size:14px}
+.cart-drawer .citem>b{font-size:17px}
+.cart-drawer .qty button{width:32px;height:32px;font-size:16px}
+.cart-drawer .qty b{font-size:15px}
+.cart-drawer .cd-foot .btn-pill{font-size:17px}
 /* QUICKVIEW */
 .qv{position:fixed;inset:0;z-index:230;display:grid;place-items:center;padding:18px;opacity:0;pointer-events:none;transition:.3s}
 .qv.show{opacity:1;pointer-events:auto}
@@ -342,8 +350,9 @@ footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .ostep{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:14px}
 .onum{min-width:26px;width:26px;height:26px;border-radius:5px;background:#111;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
 .omrecap{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;margin-top:10px}
-.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,80px);background:#111;color:#fff;padding:13px 24px;border-radius:999px;font-size:13px;font-weight:600;z-index:300;transition:.35s;max-width:calc(100vw - 32px);text-align:center}
-.toast.show{transform:translate(-50%,0)}
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.96);background:#111;color:#fff;padding:16px 28px;border-radius:5px;font-size:13px;font-weight:600;z-index:300;transition:opacity .6s ease,transform .6s ease,visibility 0s linear .6s;max-width:calc(100vw - 32px);text-align:center;opacity:0;visibility:hidden;pointer-events:none}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1);transition:opacity .6s ease,transform .6s ease,visibility 0s}
+.t-check{color:#25d366;font-weight:800}
 .reveal{opacity:0;transform:translateY(22px);transition:.7s}
 .reveal.visible{opacity:1;transform:none;padding:60px 20px 0}
 @media(max-width:1000px){.grid4{grid-template-columns:1fr 1fr}.edit,.split2,.qv-card,.foot-grid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.hero-top-img{height:30vh}.checkout{position:static}.hide-m{display:none}.split2{grid-template-columns:minmax(0,1fr)}}
@@ -694,8 +703,8 @@ footer h4{font-size:17px}
   <div class="cd-head"><span><span data-en="Your Order" data-es="Tu Pedido">Your Order</span> (<span id="drawerN">0</span>)</span><button class="icon-btn" onclick="toggleCart(false)">✕</button></div>
   <div class="ship"><span id="shipMsg">Add $150 for a free empanada night 🥟</span><div class="ship-bar"><i id="shipBar" style="width:0%"></i></div></div>
   <div class="cd-body" id="cartItems"></div>
-  <div style="padding:0 20px"><p style="font-size:12px;font-weight:700;letter-spacing:.1em">● FREQUENTLY ADDED</p><div style="display:flex;gap:8px;margin:10px 0;flex-wrap:wrap"><button onclick="addToCart('dinner')" style="flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:5px;padding:10px;cursor:pointer;font:600 12px Inter">+ Friday Dinner $25</button><button onclick="addToCart('surf-extra')" style="flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:5px;padding:10px;cursor:pointer;font:600 12px Inter">+ Surf $35</button></div></div>
-  <div class="cd-foot"><div style="display:flex;justify-content:space-between;font-family:Archivo;font-weight:800;font-size:20px"><span>Subtotal</span><span id="drawerTotal">$0</span></div><button class="btn-pill btn-dark" style="width:100%;justify-content:center;margin-top:12px" onclick="toggleCart(false);document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Checkout →</button></div>
+  <div style="padding:0 20px"><p style="font-size:15px;font-weight:700;letter-spacing:.1em">● FREQUENTLY ADDED</p><div style="display:flex;gap:8px;margin:10px 0;flex-wrap:wrap"><button onclick="addToCart('dinner')" style="flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:5px;padding:10px;cursor:pointer;font:700 15px Inter">+ Friday Dinner $25</button><button onclick="addToCart('surf-extra')" style="flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:5px;padding:10px;cursor:pointer;font:700 15px Inter">+ Surf $35</button></div></div>
+  <div class="cd-foot"><div style="display:flex;justify-content:space-between;font-family:Archivo;font-weight:800;font-size:24px"><span>Subtotal</span><span id="drawerTotal">$0</span></div><button class="btn-pill btn-dark" style="width:100%;justify-content:center;margin-top:12px" onclick="toggleCart(false);document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Checkout →</button></div>
 </aside>
 
 <!-- QUICK VIEW -->
@@ -791,7 +800,7 @@ function renderCart(){
  document.getElementById('cartCount').textContent=n;document.getElementById('cartCount2').textContent=n;document.getElementById('drawerN').textContent=n;
  document.getElementById('drawerTotal').textContent='$'+t;document.getElementById('sumTotal').textContent='$'+t;
  const ids=Object.keys(cart);
- document.getElementById('cartItems').innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS[id];return `<div class="citem"><img src="${p.img}"><div><strong style="font-size:13px">${p.title[LANG]}</strong><br><small style="color:var(--muted)">$${p.price}</small><br><span class="qty"><button onclick="changeQty('${id}',-1)">−</button><b style="padding:0 8px">${cart[id]}</b><button onclick="changeQty('${id}',1)">+</button></span></div><b>$${p.price*cart[id]}</b></div>`}).join(''):`<p style="color:var(--muted);font-size:13px">Empty — pick a program 🏄</p>`;
+ document.getElementById('cartItems').innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS[id];return `<div class="citem"><img src="${p.img}"><div><strong style="font-size:17px">${p.title[LANG]}</strong><br><small style="color:var(--muted)">$${p.price}</small><br><span class="qty"><button onclick="changeQty('${id}',-1)">−</button><b style="padding:0 8px">${cart[id]}</b><button onclick="changeQty('${id}',1)">+</button></span></div><b>$${p.price*cart[id]}</b></div>`}).join(''):`<p style="color:var(--muted);font-size:15px">Empty — pick a program 🏄</p>`;
  document.getElementById('summaryLines').innerHTML=ids.length?ids.map(id=>`<div class="sum-line"><span>${cart[id]}× ${PRODUCTS[id].title[LANG]}</span><b>$${PRODUCTS[id].price*cart[id]}</b></div>`).join(''):`<p style="opacity:.6;font-size:13px">Order is empty — add a program above.</p>`;
  const pct=Math.min(100,t/150*100);document.getElementById('shipBar').style.width=pct+'%';
  document.getElementById('shipMsg').textContent=t>=150?'🎉 Free empanada night unlocked!':`Add $${150-t} for a free empanada night 🥟`;
@@ -852,7 +861,7 @@ function initLikes(){const mine=getLikes();document.querySelectorAll('[data-like
 function shareReview(id){const card=document.querySelector('[data-post="'+id+'"]');const q=card?card.querySelector('.pq').textContent:'';const a=card?card.querySelector('.post-head strong').textContent:'';window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Mira esta reseña de Huara Spanish School: ':'Check this Huara Spanish School review: ')+q+' — '+a), '_blank','noopener');}
 function shareSite(){window.open('https://wa.me/?text='+encodeURIComponent((LANG==='es'?'Te recomiendo Huara Spanish School en Pichilemu, Chile: ':'I recommend Huara Spanish School in Pichilemu, Chile: ')+location.href),'_blank','noopener');}
 function subscribeNews(){const i=document.getElementById('nlEmail');const v=(i.value||'').trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){toast(LANG==='en'?'Please enter a valid email':'Ingresa un email válido');i.focus();return;}i.value='';toast(LANG==='en'?'Thanks! Check your inbox':'¡Gracias! Revisa tu correo');}
-let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2300);}
+let tt;function toast(m){const t=document.getElementById('toast');t.innerHTML=esc(String(m)).replace(/✓/g,'<b class="t-check">✓</b>');t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600);}
 window.addEventListener('scroll',()=>{const hdr=document.getElementById('header');hdr.classList.toggle('solid',scrollY>window.innerHeight*.55);document.getElementById('topBtn').classList.toggle('show',scrollY>600);const nearBottom=(window.innerHeight+window.scrollY)>=(document.documentElement.scrollHeight-140);hdr.classList.toggle('at-bottom',nearBottom);document.getElementById('topBtn').classList.toggle('lifted',nearBottom);document.getElementById('waFloat').classList.toggle('lifted',nearBottom);},{passive:true});
 window.addEventListener('resize',()=>window.dispatchEvent(new Event('scroll')),{passive:true});window.dispatchEvent(new Event('scroll'));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleSearch(false);toggleCart(false);toggleMenu(false);closeQV();closeOrderModal();closeLB();toggleAdmin(false);}});
