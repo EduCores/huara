@@ -110,7 +110,7 @@ header.at-bottom{opacity:0;pointer-events:none}
 .pcard .badge{background:rgba(17,17,17,.75)}
 .pcard .badge.orange{background:rgba(255,77,0,.75)}
 .pcard .badge.sand{background:rgba(236,228,211,.75)}
-.quick{position:absolute;bottom:12px;right:12px;width:40px;height:40px;border-radius:5px;background:#fff;border:0;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.quick{position:absolute;bottom:12px;right:12px;width:40px;height:40px;border-radius:5px;background:#ffffff5e;color:#ffffff;border:0;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .quick:hover{background:var(--accent);color:#fff}
 .ph .nextart{position:absolute;left:12px;bottom:12px;right:auto;margin-top:0;font-size:15px;padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .ph .nextart{background:rgba(233,244,236,.75)}
@@ -384,7 +384,7 @@ footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .addon-row strong{font-size:18px}
 .addon-row small{font-size:15px;font-weight:600;color:#8e8e70}
 .field input,.field select,.field textarea{font-size:15px}
-.field label{font-size:12px}
+.field label{font-size:16px}
 .sum-line{font-size:15px}
 .faq summary{font-size:19px}
 .faq details p{font-size:15px !important}
@@ -424,6 +424,21 @@ footer h4{font-size:17px}
 .adm-btn.ghost{background:transparent;color:#111}
 .adm-btn.green{background:#1d7a3a;border-color:#1d7a3a}
 .adm-exp{width:100%;min-height:110px;border:1px solid var(--line);border-radius:8px;padding:8px;font:400 11px monospace;background:#111;color:#c8f5c8}
+/* MOVIL: pcard como desktop pero grande (al final para ganar a la escala global) */
+@media(max-width:560px){
+  .ph .nextart b{font-size:18px}
+  .ph .nextart span{font-size:22px}
+  .pcard h3{font-size:28px}
+  .pcard .pb small{font-size:20px}
+  .price{font-size:34px}
+  .qv-btn{font-size:24px !important}
+  .quick{width:48px;height:48px}
+  .link-arrow{font-weight:600;font-size:20px}
+  .btn-pill{font-size:22px}
+  .filters button{font-size:20px}
+  .faq summary{font-size:28px}
+  .hero h1{font-size:clamp(58px,8vw,110px)}
+}
 </style>
 </head>
 <body>
@@ -795,7 +810,7 @@ function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getE
 function setFilter(f,btn){FILTER=f;document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGrid();}
 function renderGrid(){
  const ids=['pres-intensivo','surf-pack','online-bas12','int-conv','adv-master','online-int24','online-adv36'].filter(id=>FILTER==='all'||PRODUCTS[id].cat===FILTER);
- document.getElementById('productGrid').innerHTML=ids.map(id=>{const p=PRODUCTS[id];return `<div class="pcard"><div class="ph"><img src="${p.img}"><span class="badge ${p.bc}">${p.badge[LANG]}</span><button class="quick" onclick="addToCart('${id}')">+</button>${startHTML(id)}</div><div class="pb"><small>${p.tag}</small><h3>${p.title[LANG]}</h3><div class="price-row"><span class="price">${p.price===0?'Free':'$'+p.price}</span></div><button onclick="quickView('${id}')" style="margin-top:10px;width:100%;border:1px solid var(--line);background:#ff4d00;border-radius:5px;padding:10px;font:600 18px Inter;cursor:pointer;color:#fffdf8">Quick view</button></div></div>`}).join('');
+ document.getElementById('productGrid').innerHTML=ids.map(id=>{const p=PRODUCTS[id];return `<div class="pcard"><div class="ph"><img src="${p.img}"><span class="badge ${p.bc}">${p.badge[LANG]}</span><button class="quick" onclick="addToCart('${id}')">+</button>${startHTML(id)}</div><div class="pb"><small>${p.tag}</small><h3>${p.title[LANG]}</h3><div class="price-row"><span class="price">${p.price===0?'Free':'$'+p.price}</span></div><button class="qv-btn" onclick="quickView('${id}')" style="margin-top:10px;width:100%;border:1px solid var(--line);background:#ff4d00;border-radius:5px;padding:10px;font:600 18px Inter;cursor:pointer;color:#fffdf8">Quick view</button></div></div>`}).join('');
 }
 function renderAddons(){
  document.getElementById('addonList').innerHTML=['salsa','empanada','tour','dinner','surf-extra'].map(id=>{const p=PRODUCTS[id];return `<div class="addon-row"><img src="${p.img}"><div><strong>${p.title[LANG]}</strong><small>${p.desc[LANG]} · $${p.price}</small></div><button onclick="addToCart('${id}')">Add +</button></div>`}).join('');
@@ -969,7 +984,7 @@ function startHTML(id){
  const s=STARTS[id];if(!s)return '';
  let cls='ok',txt;
  if(s.s<=1){cls='full';txt=LANG==='en'?'Last spot!':'¡Último cupo!';}
- else if(s.s<=3){cls='warn';txt=LANG==='en'?'Only '+s.s+' left!':'¡Solo '+s.s+'!';}
+ else if(s.s<=3){cls='warn';txt=LANG==='en'?s.s+' left!':s.s+'!';}
  else{txt=s.s+(LANG==='en'?' spots':' cupos');}
  return `<div class="nextart ${cls}"><i></i><b>${txt}</b><span data-cd="${id}">…</span></div>`;
 }
