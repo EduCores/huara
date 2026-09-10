@@ -31,8 +31,8 @@ header{position:fixed;top:34px;left:0;right:0;z-index:100;transition:.35s;color:
 header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);color:var(--ink);border-bottom:1px solid var(--line)}
 .hbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 20px;max-width:1440px;margin:0 auto}
 .hleft{display:flex;align-items:center;gap:18px}
-.icon-btn{background:none;border:0;font-size:26px;cursor:pointer;color:inherit;flex-shrink:0}
-.logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;letter-spacing:-.02em;white-space:nowrap}
+.icon-btn{background:none;border:0;font-size:30px;cursor:pointer;color:inherit;flex-shrink:0}
+.logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:40px;letter-spacing:-.02em;white-space:nowrap}
 .logo span{color:#ff4d00}
 .logo sup{font-size:14px}
 .hright{display:flex;align-items:center;gap:18px;justify-content:flex-end;font-size:13px;font-weight:600}
@@ -167,6 +167,16 @@ header.solid{top:0;background:rgba(244,239,230,.92);backdrop-filter:blur(16px);c
 .strip img{width:260px;height:170px;object-fit:cover;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.15);flex-shrink:0}
 .strip img:nth-child(even){transform:rotate(-2deg)}
 .strip img:nth-child(odd){transform:rotate(2deg)}
+.strip img{cursor:zoom-in}
+.lbox{position:fixed;inset:0;z-index:260;background:rgba(8,12,15,.93);display:grid;place-items:center;opacity:0;pointer-events:none;transition:.3s;padding:20px}
+.lbox.show{opacity:1;pointer-events:auto}
+.lbox img{max-width:min(92vw,1000px);max-height:80vh;max-height:80dvh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lbox-x{position:absolute;top:18px;right:18px;width:46px;height:46px;border-radius:5px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-size:20px;cursor:pointer}
+.lbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:5px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;font-size:28px;cursor:pointer;line-height:1}
+.lbox-nav.prev{left:16px}
+.lbox-nav.next{right:16px}
+.lbox-count{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;opacity:.8}
+@media(max-width:560px){.lbox-nav{width:42px;height:42px}.lbox-nav.prev{left:8px}.lbox-nav.next{right:8px}}
 /* REVIEWS */
 .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:10px auto 40px}
 .rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
@@ -248,10 +258,10 @@ footer{background:#0b0e11;color:#fff;padding:50px 0 20px;margin-top:20px;overflo
 footer::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,17,.74),rgba(10,14,17,.55));z-index:1}
 footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:26px}
-.news{display:flex;background:#222;border:1px solid rgba(255,255,255,.16);border-radius:5px;padding:5px;margin-top:14px;max-width:100%}
+.news{display:flex;background:#22222275;border:1px solid rgba(255,255,255,.16);border-radius:5px;padding:5px;margin-top:14px;max-width:100%}
 .news input{flex:1;min-width:0;background:transparent;border:0;color:#fff;padding:12px 16px;outline:none;font:400 14px 'Inter'}
 .news button{background:#fff;color:#111;border:0;border-radius:5px;padding:12px 22px;font-weight:700;cursor:pointer;flex-shrink:0}
-.contact-line{display:flex;gap:10px;align-items:center;font-size:13px;opacity:.85;padding:5px 0}
+.contact-line{display:flex;gap:10px;align-items:center;font-size:15px;opacity:.85;padding:5px 0}
 .contact-line i{width:18px;text-align:center;color:var(--accent);flex-shrink:0}
 .social-row{display:flex;gap:10px;margin-top:14px}
 .soc{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:.25s;padding:0}
@@ -329,7 +339,7 @@ footer>.container,footer>.giant,footer>p{position:relative;z-index:2}
 .reveal{opacity:0;transform:translateY(22px);transition:.7s}
 .reveal.visible{opacity:1;transform:none;padding:60px 20px 0}
 @media(max-width:1000px){.grid4{grid-template-columns:1fr 1fr}.edit,.split2,.qv-card,.foot-grid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.hero-top-img{height:30vh}.checkout{position:static}.hide-m{display:none}.split2{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:560px){.container{padding:0 10px}.reveal.visible{padding:60px 10px 0}.grid4{grid-template-columns:1fr 1fr;gap:10px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:82px;padding:0 14px;gap:10px}.hleft{gap:8px}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:static;transform:none;justify-self:start;font-size:30px}.bag-btn{padding:12px 18px;font-size:14px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 10px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 10px}.checkout{padding:20px 16px}.addons{padding:16px}.foot-video{object-position:0 100%}}
+@media(max-width:560px){.container{padding:0 10px}.reveal.visible{padding:60px 10px 0}.grid4{grid-template-columns:1fr;gap:14px}.hbar{position:relative;grid-template-columns:auto 1fr auto;height:82px;padding:0 14px;gap:10px}.hleft{gap:8px}.hright{gap:8px}.hright .lang-mini{display:none}.hbar .logo{position:static;transform:none;justify-self:start;font-size:34px}.bag-btn{padding:12px 18px;font-size:14px}.m-lang{display:flex}.pcard h3{font-size:16px}.pcard .pb{padding:10px}.edit-card{min-height:480px}.edit-copy{padding:20px}.count div{min-width:68px;padding:10px}.hero-content{padding:30px 10px 36px}.btn-pill{padding:15px 24px}.surf-inner{padding:44px 10px}.checkout{padding:20px 16px}.addons{padding:16px}.foot-video{object-position:0 100%}.foot-grid h4{font-size:20px}.foot-grid p{font-size:16px !important}.foot-grid a{font-size:20px !important}.contact-line{font-size:17px}.foot-grid .news input{font-size:16px}.pay-strip span{font-size:12px}}
 @media(max-width:380px){.grid4{grid-template-columns:1fr}.hero h1{font-size:40px}.addon-row{flex-wrap:wrap}.addon-row button{margin-left:0;width:100%}}
 /* ESCALA GLOBAL DE TEXTOS */
 .links a{font-size:15px}
@@ -629,11 +639,11 @@ footer h4{font-size:17px}
 <footer>
   <video class="foot-video" autoplay muted loop playsinline preload="auto"><source src="1.mp4" type="video/mp4"></video>
   <div class="container foot-grid">
-    <div><h4 style="font-family:'Archivo';font-size:22px">HUARA<span style="color:var(--accent)">°</span></h4>
+    <div><h4 style="font-family:'Archivo';font-size:28px">HUARA<span style="color:var(--accent)">°</span></h4>
     <p style="font-size:13px;opacity:.7" data-en="Affordable immersion: language + surf + nature + Chilean food." data-es="Inmersión accesible: idioma + surf + naturaleza + comida chilena.">Affordable immersion: language + surf + nature + Chilean food.</p>
     <div style="margin-top:12px">
       <div class="contact-line"><i class="fa-solid fa-location-dot"></i><span>Casa de Katta · Pichilemu, Chile</span></div>
-      <div class="contact-line"><i class="fa-solid fa-clock"></i><span data-en="Mon–Fri 10:00–13:00" data-es="Lun–vie 10:00–13:00">Mon–Fri 10:00–13:00</span></div>
+      <div class="contact-line"><i class="fa-solid fa-clock"></i><span data-en="Mon–Fri 10:00–13:00" data-es="De lunes a viernes de 10:00 a 13:00">Mon–Fri 10:00–13:00</span></div>
       <div class="contact-line"><i class="fa-solid fa-envelope"></i><a href="mailto:hola@huara.cl">hola@huara.cl</a></div>
       <div class="contact-line"><i class="fa-solid fa-phone"></i><a href="https://wa.me/56933734134" target="_blank" rel="noopener">+56 9 3373 4134</a></div>
     </div>
@@ -677,6 +687,7 @@ footer h4{font-size:17px}
   </div>
   <div style="text-align:center;margin-top:10px"><button id="omEmpty" onclick="emptyBag()" style="background:none;border:0;color:var(--muted);font:600 12px Inter;cursor:pointer;text-decoration:underline">Empty order</button></div>
 </div></div>
+<div class="lbox" id="lbox" onclick="if(event.target===this)closeLB()"><button class="lbox-x" onclick="closeLB()">✕</button><button class="lbox-nav prev" onclick="lbNav(-1)">‹</button><img id="lbImg" src="" alt="Vista ampliada"><button class="lbox-nav next" onclick="lbNav(1)">›</button><div class="lbox-count" id="lbCount"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -722,6 +733,12 @@ function toggleCart(o){document.getElementById('cartDrawer').classList.toggle('o
 function toggleSearch(o){document.getElementById('searchPanel').classList.toggle('open',o);if(o){const i=document.getElementById('searchInput');doSearch(i.value);setTimeout(()=>i.focus(),120);}}
 function doSearch(q){q=(q||'').trim().toLowerCase();const box=document.getElementById('searchRes');const ids=Object.keys(PRODUCTS).filter(id=>{const p=PRODUCTS[id];const hay=(p.title.en+' '+p.title.es+' '+(p.tag||'')+' '+(p.desc?p.desc.en+' '+p.desc.es:'')).toLowerCase();return !q||hay.indexOf(q)>=0;}).slice(0,8);
 box.innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS[id];return `<div class="srow"><img src="${p.img}"><div><strong>${p.title[LANG]}</strong><small>$${p.price} · ${p.tag||''}</small></div><button onclick="addToCart('${id}')">+ Add</button></div>`}).join(''):`<p style="color:var(--muted);font-size:14px;padding:8px 2px">${LANG==='en'?'No matches — try "surf" or "online".':'Sin resultados — prueba "surf" u "online".'}</p>`;}
+let LB_IMGS=[],LB_I=0;
+function lbCollect(){LB_IMGS=[...new Set([...document.querySelectorAll('#stripTrack img')].map(i=>i.src))];}
+function openLB(src){lbCollect();LB_I=Math.max(0,LB_IMGS.indexOf(src));lbShow();document.getElementById('lbox').classList.add('show');}
+function lbShow(){document.getElementById('lbImg').src=LB_IMGS[LB_I];document.getElementById('lbCount').textContent=(LB_I+1)+' / '+LB_IMGS.length;}
+function lbNav(d){if(!LB_IMGS.length)return;LB_I=(LB_I+d+LB_IMGS.length)%LB_IMGS.length;lbShow();}
+function closeLB(){document.getElementById('lbox').classList.remove('show');}
 function toggleMenu(o){document.getElementById('mmenu').classList.toggle('open',o);document.getElementById('overlay').classList.toggle('show',o);}
 function quickView(id){const p=PRODUCTS[id];document.getElementById('qvImg').src=p.img;document.getElementById('qvTag').textContent='● '+p.tag;document.getElementById('qvTitle').textContent=p.title[LANG];document.getElementById('qvDesc').textContent=p.desc[LANG];document.getElementById('qvPrice').textContent=p.price===0?'Free':'$'+p.price;document.getElementById('qvAdd').onclick=()=>{addToCart(id);closeQV();};document.getElementById('qv').classList.add('show');}
 function closeQV(){document.getElementById('qv').classList.remove('show');}
@@ -770,7 +787,7 @@ function shareSite(){window.open('https://wa.me/?text='+encodeURIComponent((LANG
 function subscribeNews(){const i=document.getElementById('nlEmail');const v=(i.value||'').trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){toast(LANG==='en'?'Please enter a valid email':'Ingresa un email válido');i.focus();return;}i.value='';toast(LANG==='en'?'Thanks! Check your inbox':'¡Gracias! Revisa tu correo');}
 let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2300);}
 window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('solid',scrollY>window.innerHeight*.55);document.getElementById('topBtn').classList.toggle('show',scrollY>600);});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleSearch(false);toggleCart(false);toggleMenu(false);closeQV();closeOrderModal();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleSearch(false);toggleCart(false);toggleMenu(false);closeQV();closeOrderModal();closeLB();}});
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* La escuela edita aquí: días para el inicio (d) y cupos libres (s) por programa */
@@ -799,6 +816,7 @@ function tick(){const n=new Date();const d=new Date(n);d.setDate(n.getDate()+((8
 setInterval(tick,1000);tick();
 // duplicate strip for seamless loop
 const st=document.getElementById('stripTrack');if(st)st.innerHTML+=st.innerHTML;
+const stEl=document.getElementById('stripTrack');if(stEl)stEl.addEventListener('click',e=>{if(e.target&&e.target.tagName==='IMG')openLB(e.target.src);});
 const ft=document.getElementById('feedTrack');if(ft)ft.innerHTML+=ft.innerHTML;
 renderGrid();renderAddons();renderCart();initLikes();
 document.getElementById('year').textContent=new Date().getFullYear();
