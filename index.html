@@ -107,8 +107,17 @@ header.at-bottom{opacity:0;pointer-events:none}
 .badge{position:absolute;top:12px;left:12px;background:#111;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:5px;max-width:calc(100% - 24px)}
 .badge.orange{background:var(--accent)}
 .badge.sand{background:var(--bg2);color:#111}
+.pcard .badge{background:rgba(17,17,17,.75)}
+.pcard .badge.orange{background:rgba(255,77,0,.75)}
+.pcard .badge.sand{background:rgba(236,228,211,.75)}
 .quick{position:absolute;bottom:12px;right:12px;width:44px;height:44px;border-radius:5px;background:#fff;border:0;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .quick:hover{background:var(--accent);color:#fff}
+.ph .nextart{position:absolute;left:12px;bottom:12px;right:68px;margin-top:0;font-size:15px;padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.ph .nextart{background:rgba(233,244,236,.75)}
+.ph .nextart.warn{background:rgba(253,243,225,.75)}
+.ph .nextart.full{background:rgba(253,236,234,.75)}
+.ph .nextart b{font-size:15px}
+.ph .nextart span{font-size:16px;font-weight:700}
 .pcard .pb{padding:14px 14px 16px;min-width:0}
 .pcard .pb small{font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:#ff4d00;font-weight:600}
 .pcard h3{font-size:19px;letter-spacing:-.02em;margin:6px 0;line-height:1.1}
@@ -786,7 +795,7 @@ function setLang(l){LANG=l;['btnEN','btnENm'].forEach(id=>{const b=document.getE
 function setFilter(f,btn){FILTER=f;document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGrid();}
 function renderGrid(){
  const ids=['pres-intensivo','surf-pack','online-bas12','int-conv','adv-master','online-int24','online-adv36'].filter(id=>FILTER==='all'||PRODUCTS[id].cat===FILTER);
- document.getElementById('productGrid').innerHTML=ids.map(id=>{const p=PRODUCTS[id];return `<div class="pcard"><div class="ph"><img src="${p.img}"><span class="badge ${p.bc}">${p.badge[LANG]}</span><button class="quick" onclick="addToCart('${id}')">+</button></div><div class="pb"><small>${p.tag}</small><h3>${p.title[LANG]}</h3><div class="price-row"><span class="price">${p.price===0?'Free':'$'+p.price}</span></div>${startHTML(id)}<button onclick="quickView('${id}')" style="margin-top:10px;width:100%;border:1px solid var(--line);background:#ff4d00;border-radius:5px;padding:10px;font:600 18px Inter;cursor:pointer;color:#fffdf8">Quick view</button></div></div>`}).join('');
+ document.getElementById('productGrid').innerHTML=ids.map(id=>{const p=PRODUCTS[id];return `<div class="pcard"><div class="ph"><img src="${p.img}"><span class="badge ${p.bc}">${p.badge[LANG]}</span><button class="quick" onclick="addToCart('${id}')">+</button>${startHTML(id)}</div><div class="pb"><small>${p.tag}</small><h3>${p.title[LANG]}</h3><div class="price-row"><span class="price">${p.price===0?'Free':'$'+p.price}</span></div><button onclick="quickView('${id}')" style="margin-top:10px;width:100%;border:1px solid var(--line);background:#ff4d00;border-radius:5px;padding:10px;font:600 18px Inter;cursor:pointer;color:#fffdf8">Quick view</button></div></div>`}).join('');
 }
 function renderAddons(){
  document.getElementById('addonList').innerHTML=['salsa','empanada','tour','dinner','surf-extra'].map(id=>{const p=PRODUCTS[id];return `<div class="addon-row"><img src="${p.img}"><div><strong>${p.title[LANG]}</strong><small>${p.desc[LANG]} · $${p.price}</small></div><button onclick="addToCart('${id}')">Add +</button></div>`}).join('');
