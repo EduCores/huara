@@ -6,7 +6,7 @@
 <meta name="google" content="notranslate">
 <title>HUARA° — Spanish School Pichilemu | Analog Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{
@@ -176,10 +176,19 @@ header.at-bottom{opacity:0;pointer-events:none}
 .strip-track{display:inline-flex;gap:16px;width:max-content;animation:marquee 28s linear infinite}
 .strip:hover .strip-track{animation-play-state:paused}
 @keyframes marquee{to{transform:translateX(-50%)}}
+.strip-track.reverse{display:flex;animation:marqueeRev 28s linear infinite;margin-top:16px}
+@keyframes marqueeRev{from{transform:translateX(-50%)}to{transform:none}}
 .strip img{width:260px;height:170px;object-fit:cover;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.15);flex-shrink:0}
 .strip img:nth-child(even){transform:rotate(-2deg)}
 .strip img:nth-child(odd){transform:rotate(2deg)}
 .strip img{cursor:zoom-in}
+/* OUR STORY - manuscrita elegante */
+.story{max-width:820px;margin:10px auto 60px;text-align:center;padding:10px 20px}
+.story::before{content:"\201C";font-family:'Dancing Script',cursive;font-size:110px;line-height:.6;color:var(--accent);opacity:.35;display:block;margin-bottom:6px}
+.story-eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--accent)}
+.story p{font-family:'Dancing Script',cursive;font-weight:500;font-size:clamp(22px,2.6vw,27px);line-height:1.65;margin:14px 0}
+.story-sign{font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(26px,3.4vw,34px);color:var(--accent);margin-top:22px}
+.story-name{font-family:'Dancing Script',cursive;font-weight:600;font-size:30px;opacity:.8}
 .lbox{position:fixed;inset:0;z-index:260;background:rgba(8,12,15,.93);display:grid;place-items:center;opacity:0;pointer-events:none;transition:.3s;padding:20px}
 .lbox.show{opacity:1;pointer-events:auto}
 .lbox img{max-width:min(92vw,1000px);max-height:80vh;max-height:80dvh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
@@ -595,7 +604,27 @@ footer h4{font-size:17px}
     <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80&auto=format&fit=crop" alt="Surf">
     <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80&auto=format&fit=crop" alt="Terrace">
     <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80&auto=format&fit=crop" alt="Waves">
+  </div><div class="strip-track reverse" id="stripTrack2">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop" alt="Beach">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" alt="Students">
+    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80&auto=format&fit=crop" alt="Coast">
+    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80&auto=format&fit=crop" alt="Surf">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80&auto=format&fit=crop" alt="Terrace">
+    <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80&auto=format&fit=crop" alt="Waves">
   </div></div>
+</div>
+
+<div class="container reveal" id="historia">
+  <div class="story">
+    <p class="story-eyebrow">● OUR STORY</p>
+    <p>Twenty years ago, it all started with a passion, a passion for teaching Spanish, connecting cultures and changing lives through language. What began as one teacher's journey, became something much bigger.</p>
+    <p>I´m Katterina, I´ve been teaching Spanish to people from all over the world. 13 years ago, I created Huara Spanish School, not just as a school, but as a completely different learning experience. It´s a place where tourists don´t just learn Spanish, they live it. Because here language is more than grammar and vocabulary. It´s sharing meals, exploring local traditions, laughing with new friends and feeling at home, even miles away.</p>
+    <p>Every class is guided with care, dedication and heart.</p>
+    <p>My goal is creating a community that lives the “Real Chile”, that enjoys visiting the local market, falls in love with our products, and shares a meal connecting with all our life history. Seeing that regardless of our place of origin, we all share something that creates a bond that will be forever in our memories.</p>
+    <p>At Huara, every student is more than just a learner, you become part of something real. It´s an experience that transforms the way you see language and the way you see the world.</p>
+    <p class="story-sign">Huara Spanish School, learn Spanish, live the culture, feel at Home.</p>
+    <p class="story-name">— Katterina</p>
+  </div>
 </div>
 
 <div class="container reveal" id="casa">
@@ -996,6 +1025,7 @@ function tick(){const n=new Date();const d=getSurfTarget();let s=Math.max(0,(d-n
 setInterval(tick,1000);tick();
 // duplicate strip for seamless loop
 const st=document.getElementById('stripTrack');if(st)st.innerHTML+=st.innerHTML;
+const st2=document.getElementById('stripTrack2');if(st2){st2.innerHTML+=st2.innerHTML;st2.addEventListener('click',e=>{if(e.target&&e.target.tagName==='IMG')openLB(e.target.src);});}
 const stEl=document.getElementById('stripTrack');if(stEl)stEl.addEventListener('click',e=>{if(e.target&&e.target.tagName==='IMG')openLB(e.target.src);});
 const ft=document.getElementById('feedTrack');if(ft)ft.innerHTML+=ft.innerHTML;
 renderGrid();renderAddons();renderCart();initLikes();
