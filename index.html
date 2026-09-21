@@ -878,7 +878,7 @@ function toggleSearch(o){document.getElementById('searchPanel').classList.toggle
 function doSearch(q){q=(q||'').trim().toLowerCase();const box=document.getElementById('searchRes');const ids=Object.keys(PRODUCTS).filter(id=>{const p=PRODUCTS[id];const hay=(p.title.en+' '+p.title.es+' '+(p.tag||'')+' '+(p.desc?p.desc.en+' '+p.desc.es:'')).toLowerCase();return !q||hay.indexOf(q)>=0;}).slice(0,8);
 box.innerHTML=ids.length?ids.map(id=>{const p=PRODUCTS[id];return `<div class="srow"><img src="${p.img}"><div><strong>${p.title[LANG]}</strong><small>$${p.price} · ${p.tag||''}</small></div><button onclick="addToCart('${id}')">+ Add</button></div>`}).join(''):`<p style="color:var(--muted);font-size:14px;padding:8px 2px">${LANG==='en'?'No matches — try "surf" or "online".':'Sin resultados — prueba "surf" u "online".'}</p>`;}
 let LB_IMGS=[],LB_I=0;
-function lbCollect(){LB_IMGS=[...new Set([...document.querySelectorAll('#stripTrack img')].map(i=>i.src))];}
+function lbCollect(){LB_IMGS=[...new Set([...document.querySelectorAll('#stripTrack img,#stripTrack2 img')].map(i=>i.src))];}
 function openLB(src){lbCollect();LB_I=Math.max(0,LB_IMGS.indexOf(src));lbShow();document.getElementById('lbox').classList.add('show');}
 function lbShow(){document.getElementById('lbImg').src=LB_IMGS[LB_I];document.getElementById('lbCount').textContent=(LB_I+1)+' / '+LB_IMGS.length;}
 function lbNav(d){if(!LB_IMGS.length)return;LB_I=(LB_I+d+LB_IMGS.length)%LB_IMGS.length;lbShow();}
