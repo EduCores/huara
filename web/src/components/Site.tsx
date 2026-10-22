@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ALL_PRODUCTS, CONTACT, LOOKBOOK, PROGRAMS, type Locale } from '@/lib/content';
+import { DEFAULT_CONTENT, type Locale, type SiteContent, type SiteOverrides } from '@/lib/content';
 import { getDict } from '@/lib/i18n';
 import { nextMonday9 } from '@/lib/utils';
 import { SiteCtx, type OrderInfo, type SiteCtxValue } from './SiteContext';
@@ -45,7 +45,9 @@ export type CheckoutData = {
 const LIKE_BASE_STORAGE = 'huara_likes';
 const LIKES: Record<string, number> = { r1: 24, r2: 18, r3: 31, r4: 15, r5: 27, r6: 12, r7: 19 };
 
-export default function Site({ locale }: { locale: Locale }) {
+export default function Site({ locale, content }: { locale: Locale; content?: SiteOverrides }) {
+  const c: SiteContent = useMemo(() => ({ ...DEFAULT_CONTENT, ...content }), [content]);
+  const all = useMemo(() => [...c.programs, ...c.extras], [c]);
   const t = useMemo(() => getDict(locale), [locale]);
   const [cart, setCart] = useState<Record<string, number>>({});
   const [menuOpen, setMenuOpen] = useState(false);
@@ -65,13 +67,13 @@ export default function Site({ locale }: { locale: Locale }) {
   const [toastOn, setToastOn] = useState(false);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const lbSrcs = useMemo(() => Array.from(new Set([...LOOKBOOK.h, ...LOOKBOOK.v])), []);
+  const lbSrcs = useMemo(() => Array.from(new Set([...c.lookbookH, ...c.lookbookV])), [c]);
 
   useEffect(() => {
     setMounted(true);
     const base = Date.now();
     const at: Record<string, number> = {};
-    PROGRAMS.forEach((p) => (at[p.id] = base + p.startDays * 864e5));
+    c.programs.forEach((p) => (at[p.id] = base + p.startDays * 864e5));
     setStartAt(at);
     const target = nextMonday9().getTime();
     setSurfTarget(target);
@@ -81,7 +83,7 @@ export default function Site({ locale }: { locale: Locale }) {
     } catch {}
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [c]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -122,10 +124,10 @@ export default function Site({ locale }: { locale: Locale }) {
   const totals = useCallback(
     () =>
       Object.entries(cart).reduce((sum, [id, q]) => {
-        const p = ALL_PRODUCTS.find((x) => x.id === id);
+        const p = all.find((x) => x.id === id);
         return sum + (p ? p.price * q : 0);
       }, 0),
-    [cart]
+    [cart, all]
   );
 
   const count = useCallback(() => Object.values(cart).reduce((a, b) => a + b, 0), [cart]);
@@ -134,10 +136,10 @@ export default function Site({ locale }: { locale: Locale }) {
     (id: string) => {
       setCart((c) => ({ ...c, [id]: (c[id] || 0) + 1 }));
       setCartOpen(true);
-      const p = ALL_PRODUCTS.find((x) => x.id === id);
+      const p = all.find((x) => x.id === id);
       if (p) toast(t.added + p.title[locale]);
     },
-    [locale, t, toast]
+    [all, locale, t, toast]
   );
 
   const changeQty = useCallback((id: string, d: number) => {
@@ -201,7 +203,7 @@ export default function Site({ locale }: { locale: Locale }) {
   const checkout = useCallback(
     (data: CheckoutData) => {
       const lines = Object.entries(cart).map(([id, q]) => {
-        const p = ALL_PRODUCTS.find((x) => x.id === id)!;
+        const p = all.find((x) => x.id === id)!;
         return '- ' + q + 'x ' + p.title[locale] + ' ($' + p.price * q + ')';
       });
       const total = totals();
@@ -224,14 +226,15 @@ export default function Site({ locale }: { locale: Locale }) {
         ' · ' +
         extra +
         (data.notes ? '\n' + t.waNotes + data.notes : '');
-      const url = 'https://wa.me/' + CONTACT.wa + '?text=' + encodeURIComponent(msg);
+      const url = 'https://wa.me/' + c.contact.wa + '?text=' + encodeURIComponent(msg);
       window.open(url, '_blank', 'noopener');
       setOrder({ open: true, url, lines, total, name: data.name });
     },
-    [cart, locale, t, totals]
+    [all, cart, c, locale, t, totals]
   );
 
   const ctx: SiteCtxValue = {
+    c,
     locale,
     t,
     langHref: { en: '/', es: '/es/' },

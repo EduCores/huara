@@ -1,10 +1,10 @@
 'use client';
 
-import { ALL_PRODUCTS } from '@/lib/content';
+import type { Product } from '@/lib/content';
 import { useSite } from './SiteContext';
 
 export default function CartDrawer() {
-  const { locale, t, cart, cartOpen, setCartOpen, changeQty, addToCart, count, totals } = useSite();
+  const { locale, t, c, cart, cartOpen, setCartOpen, changeQty, addToCart, count, totals } = useSite();
   const ids = Object.keys(cart);
   const n = count();
   const total = totals();
@@ -29,7 +29,7 @@ export default function CartDrawer() {
       <div className="cd-body">
         {ids.length ? (
           ids.map((id) => {
-            const p = ALL_PRODUCTS.find((x) => x.id === id)!;
+            const p = ([...c.programs, ...c.extras] as Product[]).find((x) => x.id === id)!;
             return (
               <div className="citem" key={id}>
                 <img src={p.img} alt={p.title[locale]} />

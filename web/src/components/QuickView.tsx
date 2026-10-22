@@ -1,11 +1,11 @@
 'use client';
 
-import { ALL_PRODUCTS } from '@/lib/content';
+import type { Product } from '@/lib/content';
 import { useSite } from './SiteContext';
 
 export default function QuickView() {
-  const { locale, t, qvId, closeQV, addToCart } = useSite();
-  const p = ALL_PRODUCTS.find((x) => x.id === qvId);
+  const { locale, t, c, qvId, closeQV, addToCart } = useSite();
+  const p = ([...c.programs, ...c.extras] as Product[]).find((x) => x.id === qvId);
 
   return (
     <div className={'qv' + (qvId ? ' show' : '')}>

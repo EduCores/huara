@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ALL_PRODUCTS, EXTRAS } from '@/lib/content';
+import type { Product } from '@/lib/content';
 import { datePlusDays, emailOk } from '@/lib/utils';
 import { useSite } from './SiteContext';
 import type { CheckoutData } from './Site';
 
 export default function Addons({ onCheckout }: { onCheckout: (d: CheckoutData) => void }) {
-  const { t, locale, cart, count, totals, addToCart, toast } = useSite();
+  const { t, locale, c, cart, count, totals, addToCart, toast } = useSite();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [modality, setModality] = useState<string>('pres-grupal');
@@ -73,7 +73,7 @@ export default function Addons({ onCheckout }: { onCheckout: (d: CheckoutData) =
         <h2 style={{ fontSize: 36, margin: '8px 0 6px' }}>{t.addonsHeading}</h2>
         <p style={{ fontSize: 14, color: 'var(--muted)' }}>{t.addonsSub}</p>
         <div style={{ marginTop: 10 }} id="addonList">
-          {EXTRAS.map((p) => (
+          {c.extras.map((p) => (
             <div className="addon-row" key={p.id}>
               <img src={p.img} alt={p.title[locale]} />
               <div>
@@ -93,7 +93,7 @@ export default function Addons({ onCheckout }: { onCheckout: (d: CheckoutData) =
         <div style={{ margin: '12px 0' }} id="summaryLines">
           {ids.length ? (
             ids.map((id) => {
-              const p = ALL_PRODUCTS.find((x) => x.id === id)!;
+              const p = ([...c.programs, ...c.extras] as Product[]).find((x) => x.id === id)!;
               return (
                 <div className="sum-line" key={id}>
                   <span>

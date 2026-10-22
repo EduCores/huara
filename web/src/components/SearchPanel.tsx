@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ALL_PRODUCTS } from '@/lib/content';
+import type { Product } from '@/lib/content';
 import { useSite } from './SiteContext';
 
 export default function SearchPanel() {
-  const { locale, t, searchOpen, setSearchOpen, addToCart } = useSite();
+  const { locale, t, c, searchOpen, setSearchOpen, addToCart } = useSite();
   const [q, setQ] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -17,7 +17,7 @@ export default function SearchPanel() {
   }, [searchOpen]);
 
   const query = q.trim().toLowerCase();
-  const results = ALL_PRODUCTS.filter((p) => {
+  const results = ([...c.programs, ...c.extras] as Product[]).filter((p) => {
     if (!query) return true;
     const hay = (
       p.title.en +

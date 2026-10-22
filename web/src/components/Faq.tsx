@@ -1,15 +1,14 @@
 'use client';
 
-import { FAQ } from '@/lib/content';
 import { useSite } from './SiteContext';
 
 export default function Faq() {
-  const { locale, t } = useSite();
+  const { locale, t, c } = useSite();
 
   return (
     <div className="faq container reveal" id="faq">
       <h2 style={{ fontSize: 36, textAlign: 'center', marginBottom: 10 }}>{t.faqHeading}</h2>
-      {FAQ.map((f, i) => (
+      {c.faq.map((f, i) => (
         <details key={i} open={i === 0}>
           <summary>
             <span>{f.q[locale]}</span> <span></span>

@@ -1,11 +1,10 @@
 'use client';
 
-import { CONTACT } from '@/lib/content';
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from './Icons';
 import { useSite } from './SiteContext';
 
 export default function MenuDrawer() {
-  const { locale, t, langHref, menuOpen, setMenuOpen, setCartOpen, count } = useSite();
+  const { locale, t, c, langHref, menuOpen, setMenuOpen, setCartOpen, count } = useSite();
 
   const close = () => setMenuOpen(false);
 
@@ -40,16 +39,16 @@ export default function MenuDrawer() {
         </a>
       </div>
       <p style={{ marginTop: 20, fontSize: 13, color: 'var(--muted)' }}>
-        {CONTACT.address}
+        {c.contact.address}
         <br />
-        <a href={'mailto:' + CONTACT.email} style={{ color: 'inherit' }}>
-          {CONTACT.email}
+        <a href={'mailto:' + c.contact.email} style={{ color: 'inherit' }}>
+          {c.contact.email}
         </a>
       </p>
       <div className="social-row" style={{ marginTop: 12 }}>
         <a
           className="soc-d"
-          href={CONTACT.instagram}
+          href={c.contact.instagram}
           target="_blank"
           rel="noopener"
           aria-label="Instagram"
@@ -58,7 +57,7 @@ export default function MenuDrawer() {
         </a>
         <a
           className="soc-d"
-          href={CONTACT.facebook}
+          href={c.contact.facebook}
           target="_blank"
           rel="noopener"
           aria-label="Facebook"
@@ -67,7 +66,7 @@ export default function MenuDrawer() {
         </a>
         <a
           className="soc-d"
-          href={'https://wa.me/' + CONTACT.wa}
+          href={'https://wa.me/' + c.contact.wa}
           target="_blank"
           rel="noopener"
           aria-label="WhatsApp"

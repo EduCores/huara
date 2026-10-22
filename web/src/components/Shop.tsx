@@ -1,6 +1,6 @@
 'use client';
 
-import { PROGRAMS, type Program } from '@/lib/content';
+import type { Program } from '@/lib/content';
 import { fmtLeft } from '@/lib/utils';
 import { useSite } from './SiteContext';
 
@@ -60,8 +60,8 @@ function ProductCard({ p }: { p: Program }) {
 }
 
 export default function Shop() {
-  const { t, filter, setFilter } = useSite();
-  const list = PROGRAMS.filter((p) => filter === 'all' || p.cat === filter);
+  const { t, c, filter, setFilter } = useSite();
+  const list = c.programs.filter((p) => filter === 'all' || p.cat === filter);
   const filters = [
     ['all', t.filterAll],
     ['presencial', t.filterPresencial],

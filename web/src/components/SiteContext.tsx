@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import type { Locale } from '@/lib/content';
+import type { Locale, SiteContent } from '@/lib/content';
 import type { Dict } from '@/lib/i18n';
 
 export type OrderInfo = {
@@ -13,6 +13,7 @@ export type OrderInfo = {
 };
 
 export type SiteCtxValue = {
+  c: SiteContent;
   locale: Locale;
   t: Dict;
   langHref: { en: string; es: string };

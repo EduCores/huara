@@ -1,11 +1,10 @@
 'use client';
 
-import { METHOD } from '@/lib/content';
 import { MethodIcon } from './Icons';
 import { useSite } from './SiteContext';
 
 export default function Method() {
-  const { locale, t } = useSite();
+  const { locale, t, c } = useSite();
 
   return (
     <div className="container reveal" id="metodo">
@@ -16,10 +15,10 @@ export default function Method() {
         </h2>
         <p className="sub">{t.methodSub}</p>
         <div className="met4">
-          {METHOD.map((m) => (
-            <div className="m-item" key={m.num}>
+          {c.method.map((m, i) => (
+            <div className="m-item" key={i}>
               <div className="m-top">
-                <span className="m-num">{m.num}</span>
+                <span className="m-num">{'0' + (i + 1)}</span>
                 <span className="m-ico">
                   <MethodIcon name={m.icon} />
                 </span>

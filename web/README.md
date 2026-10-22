@@ -72,7 +72,9 @@ label. The surf banner countdown targets the next Monday 09:00 automatically.
    - Root directory: `web`
    - Build command: `npm run build`
    - Build output directory: `out`
-   - Environment variable: `NODE_VERSION=20`
+   - Environment variables: `NODE_VERSION=20`,
+     `NEXT_PUBLIC_SANITY_PROJECT_ID=n6lxjxkf`,
+     `NEXT_PUBLIC_SANITY_DATASET=production`
 4. Deploy. Static assets are unlimited; the free plan includes 500 builds/month,
    files up to 25 MiB, 20,000 files per deployment.
 
@@ -96,15 +98,40 @@ Do **not** enable Workers Paid, R2, or any add-on. Never add a payment method.
 
 ## Pending integrations
 
-### Sanity (content editing UI)
+### Sanity — CONNECTED (read side)
 
-Not wired yet — the site currently reads `src/lib/content.ts`. Next phase:
+Project `n6lxjxkf` · dataset `production` (public). The Studio lives in `../studio`.
 
-1. Create a Sanity project + `production` dataset (public).
-2. Schemas: `program`, `extra`, `review`, `faq`, `siteSettings`, `lookbook`.
-3. Add `@sanity/client`, fetch in the server pages, and fall back to
-   `content.ts` when `NEXT_PUBLIC_SANITY_PROJECT_ID` is missing.
-4. Sanity webhook (free plan allows 2) → Cloudflare Deploy Hook → rebuild.
+- `src/lib/sanity.ts` fetches all editable content at **build time** (GROQ) and maps
+  it to the site's content model. If the dataset is empty, unreachable, or has
+  invalid docs, the site silently falls back to `src/lib/content.ts` — it never breaks.
+- Env vars (`.env.local`, and in Cloudflare Pages):
+  `NEXT_PUBLIC_SANITY_PROJECT_ID=n6lxjxkf`,
+  `NEXT_PUBLIC_SANITY_DATASET=production`.
+- Schemas (in `../studio/schemaTypes`, all editable fields are bilingual EN/ES):
+  `program`, `extra`, `review`, `faq`, `story` (single), `lookbook` (single),
+  `siteSettings` (single: method steps, editorial cards, contact, IG grid, FB posts).
+- Document `id` fields must keep the legacy values (`pres-intensivo`, `salsa`,
+  `dinner`, `surf-extra`, …) — they drive cart/quick-view/checkout.
+
+### Studio (editing panel)
+
+Run from the `studio/` folder (repo root):
+
+```bash
+npm install
+npm run dev       # local panel at localhost:3333 (asks to log in with Sanity account)
+npm run deploy    # permanent panel at https://n6lxjxkf.sanity.studio (free hosting)
+```
+
+### Auto-publish webhook (after Cloudflare deploy)
+
+1. In Cloudflare Pages → Settings → Build & deploy → create a **Deploy Hook** and copy its URL.
+2. In sanity.io/manage → project `n6lxjxkf` → API → Webhooks → create one:
+   - URL: the Deploy Hook URL
+   - Trigger on: Create, Update, Delete
+   - Filter: leave empty (any document change rebuilds)
+3. Publishing in the Studio now rebuilds huara.cl automatically (free plan allows 2 webhooks).
 
 ### Brevo newsletter
 

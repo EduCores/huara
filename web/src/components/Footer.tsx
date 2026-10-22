@@ -1,13 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { CONTACT } from '@/lib/content';
 import { emailOk } from '@/lib/utils';
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from './Icons';
 import { useSite } from './SiteContext';
 
 export default function Footer() {
-  const { t, toast } = useSite();
+  const { t, toast, c } = useSite();
   const [nl, setNl] = useState('');
   const year = new Date().getFullYear();
 
@@ -34,7 +33,7 @@ export default function Footer() {
           <div style={{ marginTop: 12 }}>
             <div className="contact-line">
               <i className="fa-solid fa-location-dot"></i>
-              <span>{CONTACT.address}</span>
+              <span>{c.contact.address}</span>
             </div>
             <div className="contact-line">
               <i className="fa-solid fa-clock"></i>
@@ -42,19 +41,19 @@ export default function Footer() {
             </div>
             <div className="contact-line">
               <i className="fa-solid fa-envelope"></i>
-              <a href={'mailto:' + CONTACT.email}>{CONTACT.email}</a>
+              <a href={'mailto:' + c.contact.email}>{c.contact.email}</a>
             </div>
             <div className="contact-line">
               <i className="fa-solid fa-phone"></i>
-              <a href={'https://wa.me/' + CONTACT.wa} target="_blank" rel="noopener">
-                {CONTACT.phone}
+              <a href={'https://wa.me/' + c.contact.wa} target="_blank" rel="noopener">
+                {c.contact.phone}
               </a>
             </div>
           </div>
           <div className="social-row">
             <a
               className="soc"
-              href={CONTACT.instagram}
+              href={c.contact.instagram}
               target="_blank"
               rel="noopener"
               aria-label="Instagram"
@@ -63,7 +62,7 @@ export default function Footer() {
             </a>
             <a
               className="soc"
-              href={CONTACT.facebook}
+              href={c.contact.facebook}
               target="_blank"
               rel="noopener"
               aria-label="Facebook"
@@ -72,7 +71,7 @@ export default function Footer() {
             </a>
             <a
               className="soc"
-              href={'https://wa.me/' + CONTACT.wa}
+              href={'https://wa.me/' + c.contact.wa}
               target="_blank"
               rel="noopener"
               aria-label="WhatsApp"
@@ -108,7 +107,7 @@ export default function Footer() {
             {t.footerBook}
           </a>
           <a
-            href={'https://wa.me/' + CONTACT.wa}
+            href={'https://wa.me/' + c.contact.wa}
             target="_blank"
             rel="noopener"
             style={{ display: 'block', fontSize: 13, opacity: 0.7, padding: '3px 0' }}

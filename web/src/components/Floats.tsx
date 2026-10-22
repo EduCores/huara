@@ -1,11 +1,10 @@
 'use client';
 
-import { CONTACT } from '@/lib/content';
 import { WhatsAppIcon } from './Icons';
 import { useSite } from './SiteContext';
 
 export default function Floats() {
-  const { locale, t } = useSite();
+  const { locale, t, c } = useSite();
   const text =
     locale === 'es'
       ? '¡Hola Huara! Quiero info sobre los programas de español en Pichilemu.'
@@ -23,7 +22,7 @@ export default function Floats() {
       </button>
       <a
         className="wa-float"
-        href={'https://wa.me/' + CONTACT.wa + '?text=' + encodeURIComponent(text)}
+        href={'https://wa.me/' + c.contact.wa + '?text=' + encodeURIComponent(text)}
         target="_blank"
         rel="noopener"
         aria-label="WhatsApp"

@@ -1,6 +1,6 @@
 'use client';
 
-import { CONTACT, FB_POSTS, IG_GRID, REVIEWS, type Review } from '@/lib/content';
+import type { Review } from '@/lib/content';
 import { WhatsAppIcon } from './Icons';
 import { useSite } from './SiteContext';
 
@@ -53,7 +53,7 @@ function ReviewCard({ r }: { r: Review }) {
 }
 
 export default function Community() {
-  const { t, locale } = useSite();
+  const { t, locale, c } = useSite();
 
   const shareSite = () =>
     window.open(
@@ -83,7 +83,7 @@ export default function Community() {
           <div className="plats">
             <span>G 5.0 · Google</span>
             <a
-              href={CONTACT.instagram}
+              href={c.contact.instagram}
               target="_blank"
               rel="noopener"
               style={{ textDecoration: 'none', color: 'inherit' }}
@@ -91,7 +91,7 @@ export default function Community() {
               ◎ @huaraspanishschool
             </a>
             <a
-              href={CONTACT.facebook}
+              href={c.contact.facebook}
               target="_blank"
               rel="noopener"
               style={{ textDecoration: 'none', color: 'inherit' }}
@@ -113,7 +113,7 @@ export default function Community() {
 
       <div className="feed">
         <div className="feed-track">
-          {[...REVIEWS, ...REVIEWS].map((r, i) => (
+          {[...c.reviews, ...c.reviews].map((r, i) => (
             <ReviewCard key={r.id + '-' + i} r={r} />
           ))}
         </div>
@@ -130,7 +130,7 @@ export default function Community() {
         <a
           className="btn-pill btn-dark ig-follow"
           style={{ padding: '11px 22px' }}
-          href={CONTACT.instagram}
+          href={c.contact.instagram}
           target="_blank"
           rel="noopener"
         >
@@ -138,11 +138,11 @@ export default function Community() {
         </a>
       </div>
       <div className="ig-grid">
-        {IG_GRID.map((g) => (
+        {c.ig.map((g) => (
           <a
             className="ig-item"
             key={g.img}
-            href={CONTACT.instagram}
+            href={c.contact.instagram}
             target="_blank"
             rel="noopener"
           >
@@ -163,7 +163,7 @@ export default function Community() {
         <a
           className="btn-pill btn-dark ig-follow"
           style={{ padding: '11px 22px' }}
-          href={CONTACT.facebook}
+          href={c.contact.facebook}
           target="_blank"
           rel="noopener"
         >
@@ -171,7 +171,7 @@ export default function Community() {
         </a>
       </div>
       <div className="fb-row">
-        {FB_POSTS.map((src, i) => (
+        {c.fb.map((src, i) => (
           <div className="fb-post" key={src}>
             <iframe
               src={src}

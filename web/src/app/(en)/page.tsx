@@ -1,5 +1,7 @@
 import Site from '@/components/Site';
+import { fetchSanityContent } from '@/lib/sanity';
 
-export default function Page() {
-  return <Site locale="en" />;
+export default async function Page() {
+  const content = await fetchSanityContent();
+  return <Site locale="en" content={content} />;
 }

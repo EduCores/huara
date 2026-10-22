@@ -463,5 +463,52 @@ export const FB_POSTS = [
   'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%3Ffbid%3D1439158741556215%26set%3Da.460912359380863%26locale%3Des_LA&show_text=true&width=340',
 ];
 
+export type Product = Program | Extra;
+
 export const ALL_PRODUCTS = [...PROGRAMS, ...EXTRAS];
 export const productById = (id: string) => ALL_PRODUCTS.find((p) => p.id === id);
+
+export type FaqItem = { q: L; a: L };
+export type MethodItem = { icon: 'chat' | 'pot' | 'bag' | 'compass'; title: L; desc: L };
+export type EditorialCard = {
+  label: L;
+  title: L;
+  meta: L;
+  img: string;
+  hotspots: ({ en: string; es: string } & { pos: 'top-left' | 'top-right' })[];
+  add: string | null;
+  addLabel: L;
+  qv: string | null;
+};
+export type IGItem = { img: string; likes: number; alt: string };
+export type SiteContent = {
+  programs: Program[];
+  extras: Extra[];
+  reviews: Review[];
+  faq: FaqItem[];
+  story: typeof STORY;
+  method: MethodItem[];
+  editorial: EditorialCard[];
+  ig: IGItem[];
+  fb: string[];
+  lookbookH: string[];
+  lookbookV: string[];
+  contact: typeof CONTACT;
+};
+
+export const DEFAULT_CONTENT: SiteContent = {
+  programs: PROGRAMS,
+  extras: EXTRAS,
+  reviews: REVIEWS,
+  faq: FAQ,
+  story: STORY,
+  method: METHOD,
+  editorial: EDITORIAL as EditorialCard[],
+  ig: IG_GRID,
+  fb: FB_POSTS,
+  lookbookH: LOOKBOOK.h,
+  lookbookV: LOOKBOOK.v,
+  contact: CONTACT,
+};
+
+export type SiteOverrides = Partial<SiteContent>;

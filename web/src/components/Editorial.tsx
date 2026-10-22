@@ -1,18 +1,17 @@
 'use client';
 
-import { EDITORIAL } from '@/lib/content';
 import { useSite } from './SiteContext';
 
 export default function Editorial() {
-  const { locale, t, addToCart, openQV } = useSite();
+  const { locale, t, addToCart, openQV, c: content } = useSite();
 
   return (
     <div className="container reveal" id="modalidades">
       <div className="edit">
-        {EDITORIAL.map((c, i) => (
+        {content.editorial.map((e, i) => (
           <div className="edit-card" key={i}>
-            <img src={c.img} alt={c.title[locale]} />
-            {c.hotspots.map((h, j) => (
+            <img src={e.img} alt={e.title[locale]} />
+            {e.hotspots.map((h, j) => (
               <span
                 className="hotspot"
                 key={j}
@@ -26,24 +25,24 @@ export default function Editorial() {
               </span>
             ))}
             <div className="edit-copy">
-              <p style={{ fontSize: 12, letterSpacing: '.14em' }}>{c.label[locale]}</p>
-              <h3>{c.title[locale]}</h3>
-              <p style={{ opacity: 0.85, fontSize: 14 }}>{c.meta[locale]}</p>
+              <p style={{ fontSize: 12, letterSpacing: '.14em' }}>{e.label[locale]}</p>
+              <h3>{e.title[locale]}</h3>
+              <p style={{ opacity: 0.85, fontSize: 14 }}>{e.meta[locale]}</p>
               <div>
                 <button
                   className="btn-pill btn-white"
                   onClick={() =>
-                    c.add
-                      ? addToCart(c.add)
+                    e.add
+                      ? addToCart(e.add)
                       : document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })
                   }
                 >
-                  {c.addLabel[locale]}
+                  {e.addLabel[locale]}
                 </button>
                 <button
                   className="btn-pill"
                   style={{ border: '1px solid #fff', color: '#fff', background: 'transparent' }}
-                  onClick={() => openQV(c.qv)}
+                  onClick={() => openQV(e.qv || null)}
                 >
                   {t.quickView}
                 </button>
